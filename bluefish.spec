@@ -1,12 +1,12 @@
 Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl):	Bluefish - Edytor HTML dla zaawansowanych
 Name:		bluefish
-Version:	0.3.2
+Version:	0.3.3a
 Release:	1
 Group:		X11/Applications/Editors
 Group(pl):	X11/Aplikacje/Edytory
 Copyright:	GPL
-Source0:	http://bluefish.linuxbox.com/%{name}-%{version}.tar.gz
+Source0:	http://bluefish.linuxbox.com/%{name}-%{version}.tar.bz2
 Source1:	bluefish.desktop
 Patch:		bluefish-DESTDIR.patch
 URL:            http://bluefish.linuxbox.com/
@@ -21,35 +21,34 @@ BuildRequires:	libungif-devel
 BuildRequires:	zlib-devel
 BuildRoot:   	/tmp/%{name}-%{version}-root
 
-%define	_prefix	/usr/X11R6
+%define		_prefix		/usr/X11R6
+%define		_applnkdir	%{_datadir}/applnk
 
 %description
-Bluefish is a GTK+ based HTML editor designed 
-for the experienced web designer.
+Bluefish is a GTK+ based HTML editor designed for the experienced web designer.
 
 %description -l pl
-Bluefish jest opartym na GTK+ edytorem HTML, 
-przeznaczonym dla do¶wiadczonego projektanta stron WWW.
+Bluefish jest opartym na GTK+ edytorem HTML, przeznaczonym dla do¶wiadczonego 
+projektanta stron WWW.
 
 %prep
 %setup -q
 %patch -p0
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
-./configure %{_target_platform} \
+LDFLAGS="-s"; export LDFLAGS
+%configure \
 	--exec-prefix=%{_prefix} \
 	--with-install-location=%{_datadir}/bluefish
-
 make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/usr/X11R6/share/applnk/Editors
+install -d $RPM_BUILD_ROOT%{_applnkdir}/Editors
 
 make install DESTDIR=$RPM_BUILD_ROOT
 
-install %{SOURCE1} $RPM_BUILD_ROOT/usr/X11R6/share/applnk/Editors
+install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Editors
 
 gzip -9nf README ChangeLog BUGS AUTHORS NEWS TODO
 
@@ -59,7 +58,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc {README,ChangeLog,BUGS,AUTHORS,NEWS,TODO}.gz
-
 %attr(755,root,root) %{_bindir}/*
+
 %{_datadir}/bluefish
-/usr/X11R6/share/applnk/Editors/bluefish.desktop
+%{_applnkdir}/Editors/bluefish.desktop
