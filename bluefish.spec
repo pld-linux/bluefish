@@ -84,8 +84,9 @@ cd ..
 
 install src/%{name} $RPM_BUILD_ROOT%{_bindir}
 
-install -d icons/ $RPM_BUILD_ROOT%{_datadir}/%{name}
-install data/*.default $RPM_BUILD_ROOT%{_datadir}/%{name}
+install -d icons/*.png $RPM_BUILD_ROOT%{_datadir}/%{name}/
+install data/*.default $RPM_BUILD_ROOT%{_datadir}/%{name}/
+ln -sf %{_pixmapsdir}/%{name}.png $RPM_BUILD_ROOT%{_datadir}/%{name}/
 
 %find_lang %{name}
 
@@ -96,6 +97,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc doc 
 %attr(755,root,root) %{_bindir}/*
-%{_datadir}
+%{_datadir}/%{name}/*
 %{_applnkdir}/Editors/HTML/bluefish.desktop
 %{_pixmapsdir}/*
