@@ -49,7 +49,7 @@ Bluefish é liberado sob a licença GPL.
 %patch1 -p1
 
 %build
-gettextize --copy --force
+%{__gettextize}
 %{__libtoolize}
 aclocal
 %{__autoconf}
