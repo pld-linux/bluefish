@@ -5,7 +5,9 @@ Version:	0.6
 Release:	2
 License:	GPL
 Group:		X11/Applications/Editors
+Group(de):	X11/Applikationen/Editors
 Group(pl):	X11/Aplikacje/Edytory
+Group(pt):	X11/Aplicações/Editores
 Source0:	http://bluefish.openoffice.nl/download/%{name}-%{version}.tar.bz2
 Source1:	%{name}.desktop
 Source2:	%{name}.png
