@@ -9,6 +9,7 @@ Group(pl):	X11/Aplikacje/Edytory
 Source0:	http://bluefish.openoffice.nl/download/%{name}-%{version}.tar.bz2
 Source1:	%{name}.desktop
 Patch0:		%{name}-DESTDIR.patch
+Patch1:		%{name}-ac_lt.patch
 URL:		http://bluefish.openoffice.nl/
 BuildRequires:	gtk+-devel >= 1.2.0
 BuildRequires:	imlib-devel
@@ -32,10 +33,14 @@ do¶wiadczonych projektantów stron WWW.
 
 %prep 
 %setup -q
-%patch -p0
+%patch0 -p1
+%patch1 -p1
 
 %build
 gettextize --copy --force
+libtoolize --copy --force
+aclocal
+autoconf
 %configure \
 	--with-install-location=%{_datadir}/bluefish
 %{__make}
