@@ -1,5 +1,5 @@
---- Makefile.in.org	Mon Dec  4 00:39:11 2000
-+++ Makefile.in	Mon Mar 19 13:39:28 2001
+--- bluefish-0.6/Makefile.in.org	Mon Dec  4 00:39:11 2000
++++ bluefish-0.6/Makefile.in	Mon Mar 19 13:39:28 2001
 @@ -67,14 +67,14 @@
  	@cd intl; $(MAKE) install
  	@cd po; $(MAKE) install
@@ -23,8 +23,8 @@
  	@cd ${srcdir}/ && $(MAKE) install
  
  
---- man/Makefile.in.org	Sat Nov 25 11:20:47 2000
-+++ man/Makefile.in	Mon Mar 19 13:46:21 2001
+--- bluefish-0.6/man/Makefile.in.org	Sat Nov 25 11:20:47 2000
++++ bluefish-0.6/man/Makefile.in	Mon Mar 19 13:46:21 2001
 @@ -54,5 +54,5 @@
  distclean: patchclean
  
@@ -33,8 +33,8 @@
 -	$(INSTALL) -m 644 ./$(OBJS) $(mandir)/$(OBJS)
 +	$(INSTALL) -d -m 755 $(DESTDIR)$(mandir)
 +	$(INSTALL) -m 644 ./$(OBJS) $(DESTDIR)$(mandir)/$(OBJS)
---- src/Makefile.in.org	Sat Dec  9 11:20:46 2000
-+++ src/Makefile.in	Mon Mar 19 13:51:29 2001
+--- bluefish-0.6/src/Makefile.in.org	Sat Dec  9 11:20:46 2000
++++ bluefish-0.6/src/Makefile.in	Mon Mar 19 13:51:29 2001
 @@ -70,8 +70,8 @@
  	rm -f config.h
  
