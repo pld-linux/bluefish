@@ -38,7 +38,6 @@ projektanta stron WWW.
 %build
 LDFLAGS="-s"; export LDFLAGS
 %configure \
-	--exec-prefix=%{_prefix} \
 	--with-install-location=%{_datadir}/bluefish
 make
 
