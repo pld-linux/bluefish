@@ -1,15 +1,15 @@
 Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl):	Bluefish - Edytor HTML dla zaawansowanych
 Name:		bluefish
-Version:	0.3.6
-Release:	2
+Version:	0.4
+Release:	1
 License:	GPL
 Group:		X11/Applications/Editors
 Group(pl):	X11/Aplikacje/Edytory
-Source0:	http://bluefish.linuxbox.com/download/%{name}-%{version}.tar.bz2
+Source0:	http://bluefish.openoffice.nl/download/%{name}-%{version}.tar.bz2
 Source1:	bluefish.desktop
 Patch0:		bluefish-DESTDIR.patch
-URL:		http://bluefish.linuxbox.com/
+URL:		http://bluefish.openoffice.nl/
 BuildRequires:	gtk+-devel >= 1.2.0
 BuildRequires:	imlib-devel
 BuildRequires:	libjpeg-devel
