@@ -3,7 +3,7 @@
 # _with_opts		- use extra optimizations
 #
 # note: optflags used with this bcond are very strong, and partially
-#	obsoled for C - use at own risk!
+#	obsoleted for C (like -fno-rtti) - use at own risk!
 # 
 Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl):	Bluefish - Edytor HTML dla zaawansowanych
