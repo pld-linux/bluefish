@@ -1,3 +1,10 @@
+#
+# Conditional build:
+# _with_opts		- use extra optimizations
+#
+# note: optflags used with this bcond are very strong, and partially
+#	obsoled for C - use at own risk!
+# 
 Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl):	Bluefish - Edytor HTML dla zaawansowanych
 Summary(pt_BR):	Editor HTML Bluefish
@@ -11,9 +18,10 @@ Source0:	http://pkedu.fbt.eitn.wau.nl/~olivier/downloads/%{name}-%{version}.tar.
 # Source0-md5:	557271d19d53b0857c7290ff994a8637
 # but if you want ftp: try this one
 # Source0:	ftp://bluefish.advancecreations.com/bluefish/downloads/%{name}-%{version}.tar.bz2
-Source1:	%{name}.png
 Patch0:		%{name}-DESTDIR.patch
+Patch1:		%{name}-desktop.patch
 URL:		http://bluefish.openoffice.nl/
+BuildRequires:	aspell-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
@@ -45,31 +53,26 @@ Bluefish é liberado sob a licença GPL.
 %prep
 %setup -q
 %patch0 -p1
+%patch1	-p1
 
 %build
-%ifarch i586
-OPTIMIZATION="--enable-gcc3-optimization=pentium"
-%endif
-%ifarch i686 athlon
-OPTIMIZATION="--enable-gcc3-optimization=pentiumpro"
-%endif
-
 %{__gettextize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %configure \
-	$OPTIMIZATION	
+	%{?_with_opts:--enable-auto-optimization}
+	
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_pixmapsdir},%{_desktopdir}}
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_pixmapsdir}/
-
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+install -c inline_images/bluefish_icon1.png $RPM_BUILD_ROOT%{_pixmapsdir}/bluefish.png
 
 %find_lang %{name}
 
