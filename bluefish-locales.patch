@@ -1,25 +1,25 @@
 --- bluefish-0.13/configure.ac~	Mon Jul 26 00:30:34 2004
 +++ bluefish-0.13/configure.ac	Mon Jul 26 00:34:25 2004
 @@ -30,7 +30,7 @@
- AC_DEFINE_UNQUOTED(CURRENT_VERSION_NAME, "$PACKAGE $VERSION HTML editor")
  AC_DEFINE_UNQUOTED(CONFIGURE_OPTIONS, "$0 $*")
  
--ALL_LINGUAS="cs da de el es fr hu it ja nl no pl pt_BR ro ru sv"
+ # these are the languages that will be installed, so these should be finished
+-ALL_LINGUAS="da de es fi fr it no pl pt pt_BR ru sr sv zh_CN"
 +ALL_LINGUAS="bg cs da de el es fi fr hu it ja nb nl pl pt pt_BR ro ru sr@Latn sv ta zh_CN"
- 
- dnl ************************
- dnl Compiler options
+ AC_SUBST(ALL_LINGUAS)
+   
+ dnl ************************   
 --- bluefish-0.13/configure~	Mon Jul 26 00:34:25 2004
 +++ bluefish-0.13/configure	Mon Jul 26 00:34:25 2004
-@@ -1349,7 +1349,7 @@
- _ACEOF
+@@ -1378,7 +1378,7 @@
  
  
--ALL_LINGUAS="cs da de el es fr hu it ja nl no pl pt_BR ro ru sv"
+ # these are the languages that will be installed, so these should be finished
+-ALL_LINGUAS="da de es fi fr it no pl pt pt_BR ru sr sv zh_CN"
 +ALL_LINGUAS="bg cs da de el es fi fr hu it ja nb nl pl pt pt_BR ro ru sr@Latn sv ta zh_CN"
  
  
- test "$program_prefix" != NONE &&
+ 
 --- bluefish-0.13/po/Makefile.in~	Mon Jul 26 00:51:30 2004
 +++ bluefish-0.13/po/Makefile.in	Mon Jul 26 00:51:30 2004
 @@ -24,7 +24,7 @@
