@@ -3,7 +3,7 @@ Summary(pl):	Bluefish - Edytor HTML dla zaawansowanych
 Summary(pt_BR):	Editor HTML Bluefish
 Name:		bluefish
 Version:	0.7
-Release:	4
+Release:	5
 License:	GPL
 Group:		X11/Applications/Editors
 # The master server is here
@@ -73,12 +73,12 @@ OPTIMIZATION="--with-pentiumpro"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_applnkdir}/Office/Editors,%{_pixmapsdir}}
+install -d $RPM_BUILD_ROOT{%{_applnkdir}/Editors/HTML,%{_pixmapsdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Office/Editors
+install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Editors/HTML
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 %find_lang %{name}
@@ -92,5 +92,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 
 %{_datadir}/bluefish
-%{_applnkdir}/Office/Editors/bluefish.desktop
+%{_applnkdir}/Editors/HTML/bluefish.desktop
 %{_pixmapsdir}/*
