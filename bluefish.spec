@@ -7,7 +7,6 @@
 # 
 Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl):	Bluefish - Edytor HTML dla zaawansowanych
-Summary(pt_BR):	Editor HTML Bluefish
 Name:		bluefish
 Version:	0.11
 Release:	1	
