@@ -1,0 +1,16 @@
+[Desktop Entry]
+Name=Bluefish
+Comment=HTML Editor
+Comment[ca]=Editor d'HTML
+Comment[cs]=Editor HTML
+Comment[fr]=Editeur HTML
+Comment[no]=HTML-redigerer
+Comment[pl]=Edytor HTML
+Comment[pt_BR]=Editor HTML
+Comment[ru]=Редактор HTML
+Comment[sk]=HTML Editor
+Comment[sl]=Urejevalnik spisov v HTML
+Comment[sv]=HTML-editor
+Exec=bluefish
+Terminal=0
+Type=Application
