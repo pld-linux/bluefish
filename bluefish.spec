@@ -43,7 +43,7 @@ experientes. Atualmente ele está em estágio alfa, mas já está bastante
 usável. Algumas opções ainda não estão completamente finalizadas.
 Bluefish é liberado sob a licença GPL.
 
-%prep 
+%prep
 %setup -q
 %patch0 -p1
 %patch1 -p1
