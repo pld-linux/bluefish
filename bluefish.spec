@@ -62,7 +62,7 @@ OPTIMIZATION="--with-pentiumpro"
 
 %{__gettextize}
 %{__libtoolize}
-aclocal
+%{__aclocal}
 %{__autoconf}
 %configure \
 	--with-install-location=%{_datadir}/bluefish \
