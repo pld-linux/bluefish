@@ -3,7 +3,7 @@ Summary(pl):	Bluefish - Edytor HTML dla zaawansowanych
 Summary(pt_BR):	Editor HTML Bluefish
 Name:		bluefish
 Version:	0.7
-Release:	3
+Release:	4
 License:	GPL
 Group:		X11/Applications/Editors
 # The master server is here
@@ -14,6 +14,8 @@ Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-ac_lt.patch
+Patch2:		%{name}-locale.patch
+Patch3:		%{name}-netscape-now-mozilla.patch
 URL:		http://bluefish.openoffice.nl/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -47,14 +49,26 @@ Bluefish é liberado sob a licença GPL.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
+%ifarch i586
+OPTIMIZATION="--with-pentium"
+%endif
+%ifarch i686 athlon
+OPTIMIZATION="--with-pentiumpro"
+%endif
+
 %{__gettextize}
 %{__libtoolize}
 aclocal
 %{__autoconf}
 %configure \
-	--with-install-location=%{_datadir}/bluefish
+	--with-install-location=%{_datadir}/bluefish \
+	--with-autocomplet \
+	$OPTIMIZATION
+	
 %{__make}
 
 %install
@@ -67,8 +81,6 @@ install -d $RPM_BUILD_ROOT{%{_applnkdir}/Office/Editors,%{_pixmapsdir}}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Office/Editors
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
-gzip -9nf README ChangeLog BUGS AUTHORS NEWS TODO
-
 %find_lang %{name}
 
 %clean
@@ -76,7 +88,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc {README,ChangeLog,BUGS,AUTHORS,NEWS,TODO}.gz
+%doc README ChangeLog BUGS AUTHORS NEWS TODO
 %attr(755,root,root) %{_bindir}/*
 
 %{_datadir}/bluefish
