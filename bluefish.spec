@@ -69,14 +69,14 @@ OPTIMIZATION="--enable-gcc3-optimization=pentiumpro"
 	$OPTIMIZATION	
 %{__make}
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
-
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_applnkdir}/Editors/HTML,%{_pixmapsdir},%{_datadir}/%{name},%{_bindir}}
+install -d $RPM_BUILD_ROOT{%{_applnkdir}/Editors/HTML,%{_pixmapsdir},%{_datadir}/{applications,%{name}},%{_bindir}}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Editors/HTML
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}/
+
+make install DESTDIR=$RPM_BUILD_ROOT
 
 cd po
 make install DESTDIR=$RPM_BUILD_ROOT
