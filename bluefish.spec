@@ -1,8 +1,8 @@
 Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl):	Bluefish - Edytor HTML dla zaawansowanych
 Name:		bluefish
-Version:	0.4
-Release:	3
+Version:	0.6
+Release:	1
 License:	GPL
 Group:		X11/Applications/Editors
 Group(pl):	X11/Aplikacje/Edytory
@@ -30,9 +30,9 @@ designer.
 Bluefish jest opartym na GTK+ edytorem HTML, przeznaczonym dla
 do¶wiadczonych projektantów stron WWW.
 
-%prep
+%prep 
 %setup -q
-%patch -p1
+%patch -p0
 
 %build
 gettextize --copy --force
