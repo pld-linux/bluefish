@@ -6,9 +6,9 @@ Release:	1
 Group:		X11/Applications/Editors
 Group(pl):	X11/Aplikacje/Edytory
 Copyright:	GPL
-URL:            http://bluefish.linuxbox.com/
 Source:		http://bluefish.linuxbox.com/%{name}-%{version}.tar.gz
 Patch:		bluefish-DESTDIR.patch
+URL:            http://bluefish.linuxbox.com/
 BuildPrereq:	gtk+-devel >= 1.2.0
 BuildPrereq:	glib-devel >= 1.2.0
 BuildPrereq:	imlib-devel
