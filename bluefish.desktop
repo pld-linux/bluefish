@@ -11,6 +11,7 @@ Comment[ru]=Редактор HTML
 Comment[sk]=HTML Editor
 Comment[sl]=Urejevalnik spisov v HTML
 Comment[sv]=HTML-editor
+Icon=bluefish.png
 Exec=bluefish
 Terminal=0
 Type=Application
