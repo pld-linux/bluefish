@@ -1,0 +1,21 @@
+diff -aurN bluefish-0.10.orig/data/bluefish.desktop.in bluefish-0.10/data/bluefish.desktop.in
+--- bluefish-0.10.orig/data/bluefish.desktop.in	2003-02-19 11:15:46.000000000 +0100
++++ bluefish-0.10/data/bluefish.desktop.in	2003-07-18 13:19:36.000000000 +0200
+@@ -1,10 +1,12 @@
+ [Desktop Entry]
++Encoding=UTF-8
+ Name=Bluefish
++Name[pl]=Bluefish
+ Comment=Web development editor
+-Exec=bluefish
+-Icon=ICONDIR/bluefish-icon.png
++Comment[pl]=Edytor do tworzenia stron internetowych
++Exec=/usr/bin/bluefish
++Icon=bluefish.png
+ Terminal=false
+ Type=Application
+-Categories=Application;Office;
+-Encoding=UTF-8
+-
++Categories=Application;Development;
++# vi: encoding=utf-8
