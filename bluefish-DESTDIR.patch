@@ -1,29 +1,30 @@
---- Makefile.in~	Tue Jul  6 08:57:38 1999
-+++ Makefile.in	Sun Jul 11 20:57:09 1999
-@@ -45,10 +45,10 @@
- 	rm -f *.orig *.rej
+--- Makefile.in.org	Thu Jan 13 17:49:09 2000
++++ Makefile.in	Fri Jan 14 14:16:12 2000
+@@ -57,10 +57,10 @@
  
  install:
--	$(INSTALL) -d -m 755 @install_location@
--	$(INSTALL) -m 644 ./data/php3_functions @install_location@/php3_functions
--	$(INSTALL) -m 644 ./data/ssi_functions @install_location@/ssi_functions
--	$(INSTALL) -m 644 ./data/rxml_functions @install_location@/rxml_functions	
-+	$(INSTALL) -d -m 755 $(DESTDIR)@install_location@
-+	$(INSTALL) -m 644 ./data/php3_functions $(DESTDIR)@install_location@/php3_functions
-+	$(INSTALL) -m 644 ./data/ssi_functions $(DESTDIR)@install_location@/ssi_functions
-+	$(INSTALL) -m 644 ./data/rxml_functions $(DESTDIR)@install_location@/rxml_functions	
+ 	@$(MAKE) -C po install
+-	$(INSTALL) -d -m 755 $(install_location)
+-	$(INSTALL) -m 644 ./data/php3_functions $(install_location)/php3_functions
+-	$(INSTALL) -m 644 ./data/ssi_functions $(install_location)/ssi_functions
+-	$(INSTALL) -m 644 ./data/rxml_functions $(install_location)/rxml_functions	
++	$(INSTALL) -d -m 755 $(DESTDIR)$(install_location)
++	$(INSTALL) -m 644 ./data/php3_functions $(DESTDIR)$(install_location)/php3_functions
++	$(INSTALL) -m 644 ./data/ssi_functions $(DESTDIR)$(install_location)/ssi_functions
++	$(INSTALL) -m 644 ./data/rxml_functions $(DESTDIR)$(install_location)/rxml_functions	
  	@cd ${srcdir}/ && $(MAKE) install
  
- uninstall:
---- src/Makefile.in~	Tue Jul  6 08:57:44 1999
-+++ src/Makefile.in	Sun Jul 11 20:58:08 1999
-@@ -53,8 +53,8 @@
+ 
+--- src/Makefile.in.org	Sat Jan  8 15:49:22 2000
++++ src/Makefile.in	Fri Jan 14 14:16:35 2000
+@@ -58,9 +58,9 @@
  	rm -f config.h
  
  install: all
 -	$(INSTALL) -d -m 755 $(bindir)
--	$(INSTALL) -s -m 755 ./bluefish $(bindir)/bluefish
 +	$(INSTALL) -d -m 755 $(DESTDIR)$(bindir)
+ 	strip ./bluefish
+-	$(INSTALL) -s -m 755 ./bluefish $(bindir)/bluefish
 +	$(INSTALL) -s -m 755 ./bluefish $(DESTDIR)$(bindir)/bluefish
  
  uninstall:
