@@ -1,24 +1,30 @@
-diff -Nru bluefish-0.3.6/Makefile.in bluefish-0.3.6.new/Makefile.in
---- bluefish-0.3.6/Makefile.in	Mon Feb 28 08:20:07 2000
-+++ bluefish-0.3.6.new/Makefile.in	Mon Feb 28 07:21:41 2000
-@@ -61,10 +61,10 @@
+diff -Nru bluefish-0.4/Makefile.in bluefish-0.4.new/Makefile.in
+--- bluefish-0.4/Makefile.in	Mon Apr 17 23:31:14 2000
++++ bluefish-0.4.new/Makefile.in	Mon May 15 00:47:52 2000
+@@ -62,13 +62,13 @@
  install:
  	@$(MAKE) -C po install
  	@$(MAKE) -C man install
--	$(INSTALL) -d -m 755 $(install_location)
--	$(INSTALL) -m 644 ./data/php3_functions $(install_location)/php3_functions
--	$(INSTALL) -m 644 ./data/ssi_functions $(install_location)/ssi_functions
--	$(INSTALL) -m 644 ./data/rxml_functions $(install_location)/rxml_functions	
-+	$(INSTALL) -d -m 755 $(DESTDIR)$(install_location)
-+	$(INSTALL) -m 644 ./data/php3_functions $(DESTDIR)$(install_location)/php3_functions
-+	$(INSTALL) -m 644 ./data/ssi_functions $(DESTDIR)$(install_location)/ssi_functions
-+	$(INSTALL) -m 644 ./data/rxml_functions $(DESTDIR)$(install_location)/rxml_functions	
+-	$(INSTALL) -d -m 755 $(datadir)
+-	$(INSTALL) -d -m 755 $(pkgdatadir)
+-	$(INSTALL) -d -m 755 $(pixmapsdir)
+-	$(INSTALL) -m 644 ./pixmaps/bluefish_icon.xpm $(pixmapsdir)
+-	$(INSTALL) -m 644 ./data/php3_functions $(pkgdatadir)/php3_functions
+-	$(INSTALL) -m 644 ./data/ssi_functions $(pkgdatadir)/ssi_functions
+-	$(INSTALL) -m 644 ./data/rxml_functions $(pkgdatadir)/rxml_functions	
++	$(INSTALL) -d -m 755 $(DESTDIR)$(datadir)
++	$(INSTALL) -d -m 755 $(DESTDIR)$(pkgdatadir)
++	$(INSTALL) -d -m 755 $(DESTDIR)$(pixmapsdir)
++	$(INSTALL) -m 644 ./pixmaps/bluefish_icon.xpm $(DESTDIR)$(pixmapsdir)
++	$(INSTALL) -m 644 ./data/php3_functions $(DESTDIR)$(pkgdatadir)/php3_functions
++	$(INSTALL) -m 644 ./data/ssi_functions $(DESTDIR)$(pkgdatadir)/ssi_functions
++	$(INSTALL) -m 644 ./data/rxml_functions $(DESTDIR)$(pkgdatadir)/rxml_functions	
  	@cd ${srcdir}/ && $(MAKE) install
  
  
-diff -Nru bluefish-0.3.6/man/Makefile.in bluefish-0.3.6.new/man/Makefile.in
---- bluefish-0.3.6/man/Makefile.in	Mon Feb 28 08:20:07 2000
-+++ bluefish-0.3.6.new/man/Makefile.in	Mon Feb 28 08:19:45 2000
+diff -Nru bluefish-0.4/man/Makefile.in bluefish-0.4.new/man/Makefile.in
+--- bluefish-0.4/man/Makefile.in	Sat Mar  4 16:07:23 2000
++++ bluefish-0.4.new/man/Makefile.in	Mon May 15 00:48:15 2000
 @@ -40,11 +40,8 @@
  INSTALL = @INSTALL@
  
@@ -32,18 +38,18 @@ diff -Nru bluefish-0.3.6/man/Makefile.in bluefish-0.3.6.new/man/Makefile.in
  
  clean:
  	rm -f $(OBJS) core *~ *.bak
-@@ -55,5 +52,6 @@
+@@ -55,5 +52,5 @@
  distclean: patchclean
  
  install: all
+-	$(INSTALL) -d -m 755 $(mandir)
 -	$(INSTALL) -m 644 ./$(OBJS) $(mandir)/$(OBJS)
-+	$(INSTALL) -d $(DESTDIR)$(mandir)
-+	$(INSTALL) -m 644 ./$(SRCS) $(DESTDIR)$(mandir)
- 
-diff -Nru bluefish-0.3.6/src/Makefile.in bluefish-0.3.6.new/src/Makefile.in
---- bluefish-0.3.6/src/Makefile.in	Mon Feb 28 08:20:07 2000
-+++ bluefish-0.3.6.new/src/Makefile.in	Mon Feb 28 07:21:20 2000
-@@ -62,8 +62,8 @@
++	$(INSTALL) -d -m 755 $(DESTDIR)$(mandir)
++	$(INSTALL) -m 644 ./$(SRCS) $(DESTDIR)$(mandir)/$(OBJS)
+diff -Nru bluefish-0.4/src/Makefile.in bluefish-0.4.new/src/Makefile.in
+--- bluefish-0.4/src/Makefile.in	Mon Apr 17 23:31:16 2000
++++ bluefish-0.4.new/src/Makefile.in	Mon May 15 00:45:58 2000
+@@ -68,8 +68,8 @@
  	rm -f config.h
  
  install: all
