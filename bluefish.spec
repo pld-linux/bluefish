@@ -10,15 +10,15 @@ Source0:	http://bluefish.linuxbox.com/%{name}-%{version}.tar.gz
 Source1:	bluefish.desktop
 Patch:		bluefish-DESTDIR.patch
 URL:            http://bluefish.linuxbox.com/
-BuildPrereq:	gtk+-devel >= 1.2.0
-BuildPrereq:	glib-devel >= 1.2.0
-BuildPrereq:	imlib-devel
-BuildPrereq:	XFree86-devel
-BuildPrereq:	libjpeg-devel
-BuildPrereq:	libpng-devel
-BuildPrereq:	libtiff-devel
-BuildPrereq:	libungif-devel
-BuildPrereq:	zlib-devel
+BuildRequires:	gtk+-devel >= 1.2.0
+BuildRequires:	glib-devel >= 1.2.0
+BuildRequires:	imlib-devel
+BuildRequires:	XFree86-devel
+BuildRequires:	libjpeg-devel
+BuildRequires:	libpng-devel
+BuildRequires:	libtiff-devel
+BuildRequires:	libungif-devel
+BuildRequires:	zlib-devel
 BuildRoot:   	/tmp/%{name}-%{version}-root
 
 %define	_prefix	/usr/X11R6
