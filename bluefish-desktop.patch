@@ -1,6 +1,7 @@
---- bluefish-0.13/data/bluefish.desktop.in.orig	2004-04-04 22:13:52.000000000 +0200
-+++ bluefish-0.13/data/bluefish.desktop.in	2004-04-09 21:03:56.000000000 +0200
-@@ -1,8 +1,9 @@
+diff -urN bluefish-0.13.orig/data/bluefish.desktop.in bluefish-0.13/data/bluefish.desktop.in
+--- bluefish-0.13.orig/data/bluefish.desktop.in	2004-09-17 23:55:16.996654456 +0200
++++ bluefish-0.13/data/bluefish.desktop.in	2004-09-18 00:00:24.309935736 +0200
+@@ -1,9 +1,10 @@
  [Desktop Entry]
  Name=Bluefish Editor
  Comment=Web Development Editor
@@ -10,4 +11,6 @@
 +Icon=bluefish.png
  Terminal=false
  Type=Application
- Categories=Application;Development;
+-Categories=Application;Development;
++Categories=GTK;GNOME;Development;WebDevelopment;
+ Encoding=UTF-8
