@@ -16,6 +16,7 @@ Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-ac_lt.patch
 Patch2:		%{name}-locale.patch
 Patch3:		%{name}-netscape-now-mozilla.patch
+Patch4:		%{name}-pl.patch
 URL:		http://bluefish.openoffice.nl/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -51,6 +52,7 @@ Bluefish é liberado sob a licença GPL.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 %ifarch i586
@@ -90,6 +92,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README ChangeLog BUGS AUTHORS NEWS TODO
 %attr(755,root,root) %{_bindir}/*
+%{_mandir}/man1/*
 
 %{_datadir}/bluefish
 %{_applnkdir}/Editors/HTML/bluefish.desktop
