@@ -63,8 +63,3 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/bluefish
 /etc/X11/applnk/Editors/bluefish.desktop
-
-%changelog
-* Mon Jun 28 1999 Piotr Czerwiñski <pius@pld.org.pl> 
-  [0.3.1-1]
-- initial rpm release.
