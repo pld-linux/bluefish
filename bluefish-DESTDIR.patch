@@ -1,9 +1,10 @@
---- Makefile.in.org	Thu Jan 13 17:49:09 2000
-+++ Makefile.in	Fri Jan 14 14:16:12 2000
-@@ -57,10 +57,10 @@
- 
+diff -Nru bluefish-0.3.6/Makefile.in bluefish-0.3.6.new/Makefile.in
+--- bluefish-0.3.6/Makefile.in	Mon Feb 28 08:20:07 2000
++++ bluefish-0.3.6.new/Makefile.in	Mon Feb 28 07:21:41 2000
+@@ -61,10 +61,10 @@
  install:
  	@$(MAKE) -C po install
+ 	@$(MAKE) -C man install
 -	$(INSTALL) -d -m 755 $(install_location)
 -	$(INSTALL) -m 644 ./data/php3_functions $(install_location)/php3_functions
 -	$(INSTALL) -m 644 ./data/ssi_functions $(install_location)/ssi_functions
@@ -15,16 +16,40 @@
  	@cd ${srcdir}/ && $(MAKE) install
  
  
---- src/Makefile.in.org	Sat Jan  8 15:49:22 2000
-+++ src/Makefile.in	Fri Jan 14 14:16:35 2000
-@@ -58,9 +58,9 @@
+diff -Nru bluefish-0.3.6/man/Makefile.in bluefish-0.3.6.new/man/Makefile.in
+--- bluefish-0.3.6/man/Makefile.in	Mon Feb 28 08:20:07 2000
++++ bluefish-0.3.6.new/man/Makefile.in	Mon Feb 28 08:19:45 2000
+@@ -40,11 +40,8 @@
+ INSTALL = @INSTALL@
+ 
+ SRCS = bluefish.1
+-OBJS = bluefish.1.gz
+ 
+-all: bluefish
+-bluefish:
+-	gzip -c $(SRCS) > $(OBJS)
++all:
+ 
+ clean:
+ 	rm -f $(OBJS) core *~ *.bak
+@@ -55,5 +52,6 @@
+ distclean: patchclean
+ 
+ install: all
+-	$(INSTALL) -m 644 ./$(OBJS) $(mandir)/$(OBJS)
++	$(INSTALL) -d $(DESTDIR)$(mandir)
++	$(INSTALL) -m 644 ./$(SRCS) $(DESTDIR)$(mandir)
+ 
+diff -Nru bluefish-0.3.6/src/Makefile.in bluefish-0.3.6.new/src/Makefile.in
+--- bluefish-0.3.6/src/Makefile.in	Mon Feb 28 08:20:07 2000
++++ bluefish-0.3.6.new/src/Makefile.in	Mon Feb 28 07:21:20 2000
+@@ -62,8 +62,8 @@
  	rm -f config.h
  
  install: all
 -	$(INSTALL) -d -m 755 $(bindir)
-+	$(INSTALL) -d -m 755 $(DESTDIR)$(bindir)
- 	strip ./bluefish
 -	$(INSTALL) -s -m 755 ./bluefish $(bindir)/bluefish
++	$(INSTALL) -d -m 755 $(DESTDIR)$(bindir)
 +	$(INSTALL) -s -m 755 ./bluefish $(DESTDIR)$(bindir)/bluefish
  
  uninstall:
