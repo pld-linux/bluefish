@@ -1,56 +1,102 @@
-diff -urN bluefish-0.7/Makefile.in bluefish-0.7.new/Makefile.in
---- bluefish-0.7/Makefile.in	Tue Jul 24 15:03:38 2001
-+++ bluefish-0.7.new/Makefile.in	Sat Nov 24 16:24:20 2001
-@@ -70,8 +70,8 @@
- 	@cd po; $(MAKE) install
- 	@cd man; $(MAKE) install
- 	@cd data; $(MAKE) install
--	$(INSTALL) -d -m 755 $(pixmapsdir)
--	$(INSTALL) -m 644 ./pixmaps/bluefish_icon.xpm $(pixmapsdir)
-+	$(INSTALL) -d -m 755 $(DESTDIR)$(pixmapsdir)
-+	$(INSTALL) -m 644 ./pixmaps/bluefish_icon.xpm $(DESTDIR)$(pixmapsdir)
- 	@cd ${srcdir}/ && $(MAKE) install
+diff -ruN bluefish-0.9.orig/Makefile.in bluefish-0.9/Makefile.in
+--- bluefish-0.9.orig/Makefile.in	Wed Feb 19 23:39:25 2003
++++ bluefish-0.9/Makefile.in	Wed Feb 19 23:45:25 2003
+@@ -29,7 +29,7 @@
+ exec_prefix=@exec_prefix@
+ bindir=@bindir@
+ datadir=@datadir@
+-pkgdatadir=$(datadir)/$(PACKAGE)
++pkgdatadir=$(DESTDIR)/$(datadir)/$(PACKAGE)
+ pixmapsdir=@prefix@/share/pixmaps
  
+ INSTALL = @INSTALL@
+@@ -64,12 +64,12 @@
+ 	rm -f *.orig *.rej
  
-diff -urN bluefish-0.7/data/Makefile.in bluefish-0.7.new/data/Makefile.in
---- bluefish-0.7/data/Makefile.in	Tue Jul 24 15:03:39 2001
-+++ bluefish-0.7.new/data/Makefile.in	Sat Nov 24 16:23:21 2001
-@@ -79,8 +79,8 @@
- distclean: patchclean
+ install: src/bluefish
+-	pkgdatadir=@pkgdatadir@
++	pkgdatadir=$(DESTDIR)/@pkgdatadir@
+ 	$(INSTALL_DIR) $(pkgdatadir)
+ 	$(INSTALL_DATA) images/bluefish_splash.png $(pkgdatadir)
+ 	@cd icons/ && $(MAKE) install
+ 	if [ -d /usr/share/pixmaps ]; then \
+-		$(INSTALL_DATA) inline_images/bluefish_icon1.png /usr/share/pixmaps/bluefish-icon.png ;\
++		# $(INSTALL_DATA) inline_images/bluefish_icon1.png /usr/share/pixmaps/bluefish-icon.png ;\
+ 	fi
+	@cd src/ && $(MAKE) install
+ 	@cd po/ && $(MAKE) install
+diff -ruN bluefish-0.9.orig/data/Makefile.in bluefish-0.9/data/Makefile.in
+--- bluefish-0.9.orig/data/Makefile.in	Wed Feb 19 23:39:25 2003
++++ bluefish-0.9/data/Makefile.in	Wed Feb 19 23:43:55 2003
+@@ -12,7 +12,7 @@
+ prefix = @prefix@
+ exec_prefix = @exec_prefix@
+ bindir = @bindir@
+-pkgdatadir = @pkgdatadir@
++pkgdatadir = $(DESTDIR)/@pkgdatadir@
+ datadir = @datadir@
+ localedir = $(datadir)/locale
  
- install: all
--	$(INSTALL) -d -m 755 $(pkgdatadir)/man1
--	$(INSTALL) -m 644 ./$(OBJS) $(pkgdatadir)
-+	$(INSTALL) -d -m 755 $(DESTDIR)$(pkgdatadir)/man1
-+	$(INSTALL) -m 644 ./$(OBJS) $(DESTDIR)$(pkgdatadir)
- 
- uninstall:
- 	/bin/rm -f $(pkgdatadir)/$(OBJS)
-diff -urN bluefish-0.7/man/Makefile.in bluefish-0.7.new/man/Makefile.in
---- bluefish-0.7/man/Makefile.in	Tue Jul 24 15:03:40 2001
-+++ bluefish-0.7.new/man/Makefile.in	Sat Nov 24 16:23:00 2001
-@@ -53,8 +53,8 @@
- distclean: patchclean
- 
- install: all
--	$(INSTALL) -d -m 755 $(mandir)/man1
--	$(INSTALL) -m 644 ./$(OBJS) $(mandir)/man1/$(OBJS)
-+	$(INSTALL) -d -m 755 $(DESTDIR)$(mandir)/man1
-+	$(INSTALL) -m 644 ./$(OBJS) $(DESTDIR)$(mandir)/man1/$(OBJS)
- 
- uninstall:
- 	/bin/rm -f $(mandir)/$(OBJS)
-diff -urN bluefish-0.7/src/Makefile.in bluefish-0.7.new/src/Makefile.in
---- bluefish-0.7/src/Makefile.in	Tue Jul 24 15:03:46 2001
-+++ bluefish-0.7.new/src/Makefile.in	Sat Nov 24 16:23:11 2001
-@@ -77,8 +77,8 @@
- 	rm -f config.h
- 
- install: all
--	$(INSTALL_DIR) $(bindir)
--	$(INSTALL_PROGRAM) ./bluefish $(bindir)/bluefish
-+	$(INSTALL_DIR) $(DESTDIR)$(bindir)
-+	$(INSTALL_PROGRAM) ./bluefish $(DESTDIR)$(bindir)/bluefish
+@@ -33,10 +33,10 @@
+ 		$(INSTALL_DATA) $$file $(pkgdatadir)/$$file ;\
+ 	done
+ 	if [ -d /usr/share/applications ] ; then \
+-		$(INSTALL_DATA) bluefish.desktop /usr/share/applications/ ;\
++		$(INSTALL_DATA) bluefish.desktop $(DESTDIR)/usr/share/applications/ ;\
+ 	fi
+ 	if [ -d /usr/share/gnome/apps/Applications ] ; then \
+-		$(INSTALL_DATA) bluefish.desktop /usr/share/gnome/apps/Applications ;\
++		$(INSTALL_DATA) bluefish.desktop $(DESTDIR)/usr/share/gnome/apps/Applications ;\
+ 	fi
  
  uninstall:
- 	/bin/rm -f $(bindir)/bluefish
+diff -ruN bluefish-0.9.orig/icons/Makefile.in bluefish-0.9/icons/Makefile.in
+--- bluefish-0.9.orig/icons/Makefile.in	Wed Feb 19 23:39:25 2003
++++ bluefish-0.9/icons/Makefile.in	Wed Feb 19 23:42:52 2003
+@@ -22,7 +22,7 @@
+ prefix = @prefix@
+ exec_prefix = @exec_prefix@
+ bindir = @bindir@
+-pkgdatadir = @pkgdatadir@
++pkgdatadir = $(DESTDIR)/@pkgdatadir@
+ 
+ infodir = $(prefix)/info
+ libdir = $(prefix)/lib/gnudl
+diff -ruN bluefish-0.9.orig/po/Makefile.in bluefish-0.9/po/Makefile.in
+--- bluefish-0.9.orig/po/Makefile.in	Wed Feb 19 23:39:24 2003
++++ bluefish-0.9/po/Makefile.in	Wed Feb 19 23:45:52 2003
+@@ -14,7 +14,7 @@
+ bindir = @bindir@
+ pkgdatadir = @pkgdatadir@
+ datadir = @datadir@
+-localedir = $(datadir)/locale
++localedir = $(DESTDIR)/$(datadir)/locale
+ 
+ INSTALL = @INSTALL@
+ INSTALL_DIR = $(INSTALL) -d -m 755 
+diff -ruN bluefish-0.9.orig/src/Makefile.in bluefish-0.9/src/Makefile.in
+--- bluefish-0.9.orig/src/Makefile.in	Wed Feb 19 23:39:25 2003
++++ bluefish-0.9/src/Makefile.in	Wed Feb 19 23:44:37 2003
+@@ -21,7 +21,7 @@
+ srcdir = @srcdir@
+ prefix = @prefix@
+ exec_prefix = @exec_prefix@
+-bindir = @bindir@
++bindir = $(DESTDIR)/@bindir@
+ pkgdatadir = @pkgdatadir@
+ 
+ infodir = $(prefix)/info
+--- bluefish-0.9/Makefile.in~	Thu Feb 20 00:29:51 2003
++++ bluefish-0.9/Makefile.in	Thu Feb 20 00:32:12 2003
+@@ -68,9 +68,9 @@
+ 	$(INSTALL_DIR) $(pkgdatadir)
+ 	$(INSTALL_DATA) images/bluefish_splash.png $(pkgdatadir)
+ 	@cd icons/ && $(MAKE) install
+-	if [ -d /usr/share/pixmaps ]; then \
++#	if [ -d /usr/share/pixmaps ]; then \
+ 		# $(INSTALL_DATA) inline_images/bluefish_icon1.png /usr/share/pixmaps/bluefish-icon.png ;\
+-	fi
++#	fi
+ 	@cd src/ && $(MAKE) install
+ 	@cd po/ && $(MAKE) install
+ 	@cd data/ && $(MAKE) install
