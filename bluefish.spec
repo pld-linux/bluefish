@@ -39,7 +39,7 @@ gettextize --copy --force
 LDFLAGS="-s"; export LDFLAGS
 %configure \
 	--with-install-location=%{_datadir}/bluefish
-make
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
