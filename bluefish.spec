@@ -6,9 +6,6 @@ Version:	0.7
 Release:	3
 License:	GPL
 Group:		X11/Applications/Editors
-Group(de):	X11/Applikationen/Editors
-Group(pl):	X11/Aplikacje/Edytory
-Group(pt):	X11/Aplicações/Editores
 # The master server is here
 Source0:	http://pkedu.fbt.eitn.wau.nl/~olivier/downloads/%{name}-%{version}.tar.bz2
 # but if you want ftp: try this one
