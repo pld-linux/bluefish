@@ -9,7 +9,7 @@ Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl):	Bluefish - Edytor HTML dla zaawansowanych
 Name:		bluefish
 Version:	0.11
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Editors
 # The master server is here
@@ -19,6 +19,7 @@ Source0:	http://pkedu.fbt.eitn.wau.nl/~olivier/downloads/%{name}-%{version}.tar.
 # Source0:	ftp://bluefish.advancecreations.com/bluefish/downloads/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-desktop.patch
+Patch2:		%{name}-home_etc.patch
 URL:		http://bluefish.openoffice.nl/
 BuildRequires:	aspell-devel
 BuildRequires:	autoconf
@@ -53,6 +54,7 @@ Bluefish é liberado sob a licença GPL.
 %setup -q
 %patch0 -p1
 %patch1	-p1
+%patch2 -p1
 
 %build
 %{__gettextize}
