@@ -1,12 +1,12 @@
 Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl):	Bluefish - Edytor HTML dla zaawansowanych
 Name:		bluefish
-Version:	0.3.4
+Version:	0.3.5
 Release:	1
 Group:		X11/Applications/Editors
 Group(pl):	X11/Aplikacje/Edytory
 Copyright:	GPL
-Source0:	http://bluefish.linuxbox.com/%{name}-%{version}.tar.bz2
+Source0:	http://bluefish.linuxbox.com/download/%{name}-%{version}.tar.bz2
 Source1:	bluefish.desktop
 Patch:		bluefish-DESTDIR.patch
 URL:            http://bluefish.linuxbox.com/
@@ -45,7 +45,7 @@ make
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_applnkdir}/Editors
 
-make install DESTDIR=$RPM_BUILD_ROOT
+make prefix=$RPM_BUILD_ROOT%{_prefix} install DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Editors
 
