@@ -6,7 +6,8 @@ Release:	1
 Group:		X11/Applications/Editors
 Group(pl):	X11/Aplikacje/Edytory
 Copyright:	GPL
-Source:		http://bluefish.linuxbox.com/%{name}-%{version}.tar.gz
+Source0:	http://bluefish.linuxbox.com/%{name}-%{version}.tar.gz
+Source1:	bluefish.desktop
 Patch:		bluefish-DESTDIR.patch
 URL:            http://bluefish.linuxbox.com/
 BuildPrereq:	gtk+-devel >= 1.2.0
@@ -44,8 +45,11 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT/etc/X11/applnk/Editors
 
 make install DESTDIR=$RPM_BUILD_ROOT
+
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/X11/applnk/Editors
 
 gzip -9nf README ChangeLog BUGS AUTHORS NEWS TODO
 
@@ -57,6 +61,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc {README,ChangeLog,BUGS,AUTHORS,NEWS,TODO}.gz
 
 %attr(755,root,root) %{_bindir}/*
+/etc/X11/applnk/Editors/bluefish.desktop
 
 %changelog
 * Mon Jun 28 1999 Piotr Czerwiñski <pius@pld.org.pl> 
