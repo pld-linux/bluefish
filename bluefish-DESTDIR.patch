@@ -19,9 +19,9 @@ diff -ruN bluefish-0.9.orig/Makefile.in bluefish-0.9/Makefile.in
  	$(INSTALL_DIR) $(pkgdatadir)
  	$(INSTALL_DATA) images/bluefish_splash.png $(pkgdatadir)
  	@cd icons/ && $(MAKE) install
- 	if [ -d /usr/share/pixmaps ]; then \
--		$(INSTALL_DATA) inline_images/bluefish_icon1.png /usr/share/pixmaps/bluefish-icon.png ;\
-+		# $(INSTALL_DATA) inline_images/bluefish_icon1.png /usr/share/pixmaps/bluefish-icon.png ;\
+ 	if [ -d $(iconpath) ]; then \
+-		$(INSTALL_DATA) inline_images/bluefish_icon1.png $(iconpath)/bluefish-icon.png ;\
++		# $(INSTALL_DATA) inline_images/bluefish_icon1.png $(iconpath)/bluefish-icon.png ;\
  	fi
 	@cd src/ && $(MAKE) install
  	@cd po/ && $(MAKE) install
@@ -37,16 +37,18 @@ diff -ruN bluefish-0.9.orig/data/Makefile.in bluefish-0.9/data/Makefile.in
  datadir = @datadir@
  localedir = $(datadir)/locale
  
-@@ -33,10 +33,10 @@
+@@ -33,11 +33,11 @@
  		$(INSTALL_DATA) $$file $(pkgdatadir)/$$file ;\
  	done
- 	if [ -d /usr/share/applications ] ; then \
--		$(INSTALL_DATA) bluefish.desktop /usr/share/applications/ ;\
-+		$(INSTALL_DATA) bluefish.desktop $(DESTDIR)/usr/share/applications/ ;\
+ 	if [ -d $(gnome2menupath) ] ; then \
+-		$(INSTALL_DATA) bluefish.desktop $(gnome2menupath) ;\
++		$(INSTALL_DATA) bluefish.desktop $(DESTDIR)/$(gnome2menupath) ;\
  	fi
- 	if [ -d /usr/share/gnome/apps/Applications ] ; then \
--		$(INSTALL_DATA) bluefish.desktop /usr/share/gnome/apps/Applications ;\
-+		$(INSTALL_DATA) bluefish.desktop $(DESTDIR)/usr/share/gnome/apps/Applications ;\
+ 	if [ -d $(gnome1menupath) ] ; then \
+-		$(INSTALL_DIR) $(gnome1menupath)/Applications ;\
++		$(INSTALL_DIR) $(DESTDIR)/$(gnome1menupath)/Applications ;\
+-		$(INSTALL_DATA) bluefish.desktop $(gnome1menupath)/Applications ;\
++		$(INSTALL_DATA) bluefish.desktop $(DESTDIR)/$(gnome1menupath)/Applications ;\
  	fi
  
  uninstall:
@@ -92,9 +94,9 @@ diff -ruN bluefish-0.9.orig/src/Makefile.in bluefish-0.9/src/Makefile.in
  	$(INSTALL_DIR) $(pkgdatadir)
  	$(INSTALL_DATA) images/bluefish_splash.png $(pkgdatadir)
  	@cd icons/ && $(MAKE) install
--	if [ -d /usr/share/pixmaps ]; then \
-+#	if [ -d /usr/share/pixmaps ]; then \
- 		# $(INSTALL_DATA) inline_images/bluefish_icon1.png /usr/share/pixmaps/bluefish-icon.png ;\
+-	if [ -d $(iconpath) ]; then \
++#	if [ -d $(iconpath) ]; then \
+ 		# $(INSTALL_DATA) inline_images/bluefish_icon1.png $(iconpath)/bluefish-icon.png ;\
 -	fi
 +#	fi
  	@cd src/ && $(MAKE) install
