@@ -20,6 +20,7 @@ Source0:	http://pkedu.fbt.eitn.wau.nl/~olivier/downloads/%{name}-%{version}.tar.
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-desktop.patch
 Patch2:		%{name}-home_etc.patch
+Patch3:		%{name}-locales.patch
 URL:		http://bluefish.openoffice.nl/
 BuildRequires:	aspell-devel
 BuildRequires:	autoconf
@@ -56,6 +57,10 @@ Bluefish é liberado sob a licença GPL.
 %patch0 -p1
 %patch1	-p1
 #%patch2 -p1
+%patch3 -p1
+
+mv -f po/{no,nb}.po
+mv -f po/sr{,@Latn}.po
 
 %build
 %{__gettextize}
