@@ -20,3 +20,14 @@
  
  
  test "$program_prefix" != NONE &&
+--- bluefish-0.13/po/Makefile.in~	Mon Jul 26 00:51:30 2004
++++ bluefish-0.13/po/Makefile.in	Mon Jul 26 00:51:30 2004
+@@ -24,7 +24,7 @@
+ XGETTEXT = @XGETTEXT@
+ MSGMERGE = @MSGMERGE@
+ 
+-SRCS = bg.po cs.po da.po de.po el.po es.po fi.po fr.po hu.po it.po ja.po nl.po no.po pl.po pt.po pt_BR.po ro.po ru.po sr.po sv.po ta.po zh_CN.po
++SRCS = bg.po cs.po da.po de.po el.po es.po fi.po fr.po hu.po it.po ja.po nb.po nl.po pl.po pt.po pt_BR.po ro.po ru.po sr@Latn.po sv.po ta.po zh_CN.po
+ .SUFFIXES: .po .gmo
+ OBJS = $(SRCS:.po=.gmo)
+ 
