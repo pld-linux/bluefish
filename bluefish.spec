@@ -1,6 +1,6 @@
 #
 # Conditional build:
-# _with_opts		- use extra optimizations
+%bcond_with opts	# use extra optimizations
 #
 # note: optflags used with this bcond are very strong, and partially
 #	obsoleted for C (like -fno-rtti) - use at own risk!
@@ -8,13 +8,13 @@
 Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl):	Bluefish - Edytor HTML dla zaawansowanych
 Name:		bluefish
-Version:	0.11
-Release:	2
+Version:	0.12
+Release:	1
 License:	GPL
 Group:		X11/Applications/Editors
 # The master server is here
 Source0:	http://pkedu.fbt.eitn.wau.nl/~olivier/downloads/%{name}-%{version}.tar.bz2
-# Source0-md5:	4da2495bd8b3ce1010fed61120037f98
+# Source0-md5:	9b01162747c7be6e2fc46475544bf995
 # but if you want ftp: try this one
 # Source0:	ftp://bluefish.advancecreations.com/bluefish/downloads/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-DESTDIR.patch
@@ -25,8 +25,9 @@ BuildRequires:	aspell-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
+BuildRequires:	gnome-vfs2-devel >= 2.2
 BuildRequires:	gtk+2-devel
-BuildRequires:	imlib-devel
+BuildRequires:	libbonobo-devel >= 2.2
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng >= 1.2.5
 BuildRequires:	libtiff-devel
@@ -54,7 +55,7 @@ Bluefish é liberado sob a licença GPL.
 %setup -q
 %patch0 -p1
 %patch1	-p1
-%patch2 -p1
+#%patch2 -p1
 
 %build
 %{__gettextize}
@@ -62,7 +63,7 @@ Bluefish é liberado sob a licença GPL.
 %{__aclocal}
 %{__autoconf}
 %configure \
-	%{?_with_opts:--enable-auto-optimization}
+	%{?with_opts:--enable-auto-optimization}
 
 %{__make}
 
