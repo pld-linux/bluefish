@@ -1,0 +1,647 @@
+diff -ur bluefish-0.7.orig/po/pl.po bluefish-0.7/po/pl.po
+--- bluefish-0.7.orig/po/pl.po	Wed Nov  6 20:44:34 2002
++++ bluefish-0.7/po/pl.po	Wed Nov  6 21:17:10 2002
+@@ -2,7 +2,6 @@
+ # Copyright (C) 2000 Free Software Foundation, Inc.
+ # Pawe³ Lipiñski <leeper@poczta.fm>, 2000
+ #
+-#, fuzzy
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: 0.6\n"
+@@ -29,7 +28,7 @@
+ 
+ #: src/callbacks.c:123
+ msgid "Browser is not running, starting browser"
+-msgstr "Przegladarka nie jest uruchomiona, uruchamiam"
++msgstr "Przegl±darka nie jest uruchomiona, uruchamiam"
+ 
+ #. if it couldn't be created, cancel print
+ #: src/callbacks.c:187 src/callbacks.c:190 src/callbacks.c:193
+@@ -46,7 +45,7 @@
+ "That looks like a secure server,\n"
+ "Bluefish doesn't support them"
+ msgstr ""
+-"To wyglada jak bezpieczny serwer,\n"
++"To wygl±da jak bezpieczny serwer,\n"
+ "Bluefish tego nie wspiera"
+ 
+ #: src/callbacks.c:190
+@@ -116,16 +115,16 @@
+ 
+ #: src/callbacks.c:299
+ msgid "Bluefish: Weblint warning"
+-msgstr "Ostrze¿enie Weblint'a"
++msgstr "Ostrze¿enie Weblinta"
+ 
+ #: src/callbacks.c:310
+ msgid "Running Weblint"
+-msgstr "Uruchamiam Weblint'a"
++msgstr "Uruchamiam Weblinta"
+ 
+ #. Main Window
+ #: src/callbacks.c:314
+ msgid "Weblint output"
+-msgstr "Wyj¶cie Weblint'a"
++msgstr "Wyj¶cie Weblinta"
+ 
+ #: src/callbacks.c:348
+ msgid "Recheck"
+@@ -146,8 +145,8 @@
+ "To use this option you will need to download weblint from:\n"
+ "http://www.cre.canon.co.uk/~neilb/weblint/"
+ msgstr ""
+-"Chyba nie masz zainstalowanego Weblint'a \n"
+-"Aby uzyæ tej opcji zainstaluj Weblint'a z:\n"
++"Chyba nie masz zainstalowanego Weblinta \n"
++"Aby u¿yæ tej opcji zainstaluj Weblinta z:\n"
+ "http://www.cre.canon.co.uk/~neilb/weblint/"
+ 
+ #: src/callbacks.c:387
+@@ -254,7 +253,7 @@
+ 
+ #: src/configure.c:403
+ msgid "Line wrap"
+-msgstr "Zawijanie linii"
++msgstr "Zawijanie wierszy"
+ 
+ #: src/configure.c:404
+ msgid "Autoindent Code"
+@@ -266,11 +265,11 @@
+ 
+ #: src/configure.c:406
+ msgid "Update syntax highlighting continuous"
+-msgstr "Ci±g³e wznawianie podswietlania sk³adni "
++msgstr "Ci±g³e wznawianie pod¶wietlania sk³adni "
+ 
+ #: src/configure.c:407
+ msgid "Update full widget instead of the current line (slower)"
+-msgstr "Odnawiaj ca³e okno, nie tylko aktualn± liniê (wolniejsze)"
++msgstr "Odnawiaj ca³e okno, nie tylko bie¿±cy wiersz (wolniejsze)"
+ 
+ #: src/configure.c:408
+ msgid "Automatic link management"
+@@ -282,14 +281,14 @@
+ 
+ #: src/configure.c:410
+ msgid "Clear undo levels on save"
+-msgstr "Wyczy¶æ poziomy cofania przy zapisaniu"
++msgstr "Wyczy¶æ poziomy cofania przy zapisywaniu"
+ 
+ #: src/configure.c:412
+ msgid ""
+ "Insert drag and drop at drop position\n"
+ "instead of cursor position (experimental)"
+ msgstr ""
+-"Wstaw w miejsce 'przeciagnij i upu¶æ'\n"
++"Wstaw w miejsce 'przeci±gnij i upu¶æ'\n"
+ "zamiast w miejsce kursora (experymentalne)"
+ 
+ #. vbox2
+@@ -302,13 +301,12 @@
+ msgstr "Wstaw tekst u¿ywaj±c Ctrl-Enter"
+ 
+ #: src/configure.c:425
+-#, fuzzy
+ msgid ""
+ "Insert HTML entity with Ctrl-(special char)\n"
+ "(&lt; &gt; &amp; &quot;)"
+ msgstr ""
+ "Wstaw symbol HTML u¿ywaj±c Ctrl-(znak specjalny)\n"
+-"(&lt; &gt; &amp;)"
++"(&lt; &gt; &amp; &quot;)"
+ 
+ #: src/configure.c:427
+ msgid "Editor"
+@@ -362,11 +360,11 @@
+ 
+ #: src/configure.c:456
+ msgid "Use an XML-Starting-Line"
+-msgstr "U¿yj poczatkowej linii XML"
++msgstr "U¿yj pocz±tkowego wiersza XML"
+ 
+ #: src/configure.c:457
+ msgid "Allow the Ruby-Tags included in XHTML 1.0"
+-msgstr "Pozwól na u¿ywanie Ruby-znaczników za³aczonych w XHTML 1.0"
++msgstr "Pozwól na u¿ywanie Ruby-znaczników zawartych w XHTML 1.0"
+ 
+ #: src/configure.c:458
+ msgid "Allow new tags of HTML 4.0"
+@@ -468,11 +466,11 @@
+ 
+ #: src/configure.c:500
+ msgid "Show autocompletion window for HTML tags while editing"
+-msgstr ""
++msgstr "Pokazuj podczas edycji okno automatycznego dope³niania znaczników HTML"
+ 
+ #: src/configure.c:501
+ msgid "Delay to show the autocompletion window"
+-msgstr ""
++msgstr "Opó¼nienie pokazywania okna automatycznego dope³niania"
+ 
+ #: src/configure.c:504
+ msgid "GUI"
+@@ -524,7 +522,7 @@
+ 
+ #: src/configure.c:535
+ msgid "Open commandline files in already running bluefish"
+-msgstr "Otwieraj pliki z linii poleceñ w ju¿ dzia³aj±cym blufish'u"
++msgstr "Otwieraj pliki z linii poleceñ w ju¿ dzia³aj±cym blufishu"
+ 
+ #: src/configure.c:537
+ msgid "File filters"
+@@ -564,12 +562,11 @@
+ 
+ #: src/configure.c:560
+ msgid "Weblint command"
+-msgstr "Polecenie Weblint'a"
++msgstr "Polecenie Weblinta"
+ 
+ #: src/configure.c:561
+-#, fuzzy
+ msgid "Image editor command"
+-msgstr "Mapa obrazowa"
++msgstr "Polecenie edycji obrazka"
+ 
+ #: src/configure.c:564
+ msgid "Spell checker options"
+@@ -1195,24 +1192,23 @@
+ 
+ #: src/html.c:1006 src/wizards.c:181 src/wml.c:111 src/wml.c:379
+ msgid "Title"
+-msgstr "Tytu³"
++msgstr "Title"
+ 
+ #: src/html.c:1063
+ msgid "Body"
+-msgstr "Cia³o"
++msgstr "Body"
+ 
+ #: src/html.c:1095
+ msgid "OnLoad"
+-msgstr ""
++msgstr "OnLoad"
+ 
+ #: src/html.c:1099
+ msgid "OnUnLoad"
+-msgstr ""
++msgstr "OnUnLoad"
+ 
+ #: src/html.c:1104
+-#, fuzzy
+ msgid "Deprecated options"
+-msgstr "Opcje sprawdzania pisowni"
++msgstr "Opcje porzucone"
+ 
+ #: src/html.c:1110
+ msgid "Background Image"
+@@ -1789,7 +1785,7 @@
+ msgstr "W³a¶ciwo¶ci %s"
+ 
+ #: src/interface.c:977
+-#, fuzzy, c-format
++#, c-format
+ msgid ""
+ "Size: %lu\n"
+ "Last Modification: %sLast access: %sUser: %s\n"
+@@ -1797,7 +1793,6 @@
+ msgstr ""
+ "Rozmiar: %lu\n"
+ "Ostatnia zmiana: %sOstatni dostêp: %sU¿ytkownik: %s\n"
+-"Grupa: %s\n"
+ "Prawa: %s\n"
+ 
+ #: src/interface.c:986 src/perl.c:94
+@@ -1866,9 +1861,8 @@
+ msgstr "Podejrzyj obrazek"
+ 
+ #: src/interface.c:1098
+-#, fuzzy
+ msgid "Edit image"
+-msgstr "edycja znaczników"
++msgstr "edycja obrazka"
+ 
+ #: src/interface.c:1108
+ msgid "Refresh file browser"
+@@ -1892,7 +1886,7 @@
+ 
+ #: src/interface.c:1386
+ msgid "Attrs."
+-msgstr ""
++msgstr "Atryb."
+ 
+ #: src/interface.c:1624
+ msgid "About Bluefish"
+@@ -1925,9 +1919,8 @@
+ msgstr "/Plik/tearoff1"
+ 
+ #: src/menu.c:107
+-#, fuzzy
+ msgid "/File/_New"
+-msgstr "/Plik/_Nowy..."
++msgstr "/Plik/_Nowy"
+ 
+ #: src/menu.c:108
+ msgid "/File/_Open..."
+@@ -1994,9 +1987,8 @@
+ msgstr "/Plik/sep4"
+ 
+ #: src/menu.c:124
+-#, fuzzy
+ msgid "/File/Print..."
+-msgstr "/Plik/Drukuj"
++msgstr "/Plik/Drukuj..."
+ 
+ #: src/menu.c:125
+ msgid "/File/sep5"
+@@ -2035,9 +2027,8 @@
+ msgstr "/Edycja/Zaznacz wszystko"
+ 
+ #: src/menu.c:134
+-#, fuzzy
+ msgid "/Edit/Go to line..."
+-msgstr "/Edycja/Id¼ do linii"
++msgstr "/Edycja/Id¼ do linii..."
+ 
+ #: src/menu.c:135
+ msgid "/Edit/sep3"
+@@ -2140,9 +2131,8 @@
+ msgstr "/Poka¿/_Przeciagnij i upu¶æ okno"
+ 
+ #: src/menu.c:165
+-#, fuzzy
+ msgid "/View/_Preview image under cursor"
+-msgstr "/Poka¿/P_odglad"
++msgstr "/Poka¿/P_odgl±d obrazka pod kursorem"
+ 
+ #: src/menu.c:168
+ msgid "/View/_Preview "
+@@ -2277,9 +2267,8 @@
+ msgstr "/Znaczniki/Specjalne/Inne"
+ 
+ #: src/menu.c:204
+-#, fuzzy
+ msgid "/Tags/Special/tearoff1"
+-msgstr "/Znaczniki/Specjalne/Inne/tearoff1"
++msgstr "/Znaczniki/Specjalne/tearoff1"
+ 
+ #: src/menu.c:205
+ msgid "/Tags/Special/Accent"
+@@ -3160,20 +3149,17 @@
+ msgstr "/Dialogi/JavaScript/tearoff1"
+ 
+ #: src/menu.c:498
+-#, fuzzy
+ msgid "/Dialogs/Javascript/Mouseover Script"
+-msgstr "/Dialogi/JavaScript/Skrypt MouseOver..."
++msgstr "/Dialogi/JavaScript/Skrypt MouseOver"
+ 
+ #: src/menu.c:499
+-#, fuzzy
+ msgid "/Dialogs/Javascript/Netscape 4 Resize Bugfix Script"
+ msgstr ""
+ "/Dialogi/JavaScript/Skrypt do obej¶cia b³êdu zmiany rozmiaru w Netscape 4"
+ 
+ #: src/menu.c:500
+-#, fuzzy
+ msgid "/Dialogs/Javascript/Image Preload Script"
+-msgstr "/Dialogi/JavaScript/Skrypt ³adowania obrazków..."
++msgstr "/Dialogi/JavaScript/Skrypt ³adowania obrazków"
+ 
+ #: src/menu.c:501
+ msgid "/Dialogs/_WML"
+@@ -3184,9 +3170,8 @@
+ msgstr "/Dialogi/WML/tearoff1"
+ 
+ #: src/menu.c:503
+-#, fuzzy
+ msgid "/Dialogs/WML/Standard Document"
+-msgstr "/Dialogi/WML/Zwyk³y dokument..."
++msgstr "/Dialogi/WML/Zwyk³y dokument"
+ 
+ #: src/menu.c:504
+ msgid "/Dialogs/WML/Card..."
+@@ -3310,7 +3295,7 @@
+ 
+ #: src/menu.c:537
+ msgid "/Perl/Strip CR Codes"
+-msgstr ""
++msgstr "/Perl/Pomiñ znaki CR"
+ 
+ #: src/menu.c:539
+ msgid "/_Options"
+@@ -3321,9 +3306,8 @@
+ msgstr "/Opcje/tearoff1"
+ 
+ #: src/menu.c:541
+-#, fuzzy
+ msgid "/Options/Preferences..."
+-msgstr "/Opcje/Ustawienia"
++msgstr "/Opcje/Ustawienia..."
+ 
+ #: src/menu.c:542
+ msgid "/Options/View Main toolbar"
+@@ -3338,9 +3322,8 @@
+ msgstr "/Opcje/Poka¿ w³asny pasek"
+ 
+ #: src/menu.c:545
+-#, fuzzy
+ msgid "/Options/View Filebrowser"
+-msgstr "/Opcje/Poka¿ g³ówny pasek"
++msgstr "/Opcje/Poka¿ przegl±darkê plików"
+ 
+ #: src/menu.c:546
+ msgid "/Options/sep2"
+@@ -3351,9 +3334,8 @@
+ msgstr "/Opcje/_Listy"
+ 
+ #: src/menu.c:548
+-#, fuzzy
+ msgid "/Options/Lists/tearoff1"
+-msgstr "/Opcje/tearoff1"
++msgstr "/Opcje/Listy/tearoff1"
+ 
+ #: src/menu.c:549
+ msgid "/Options/Lists/External filters..."
+@@ -3417,7 +3399,7 @@
+ 
+ #: src/menu.c:912
+ msgid "This custom search and replace requires a selection"
+-msgstr ""
++msgstr "To w³asne szukanie i zastêpowanie wymaga zaznaczenia"
+ 
+ #: src/menu.c:1043
+ msgid "/php/ibase/ibase fetch row"
+@@ -3770,37 +3752,35 @@
+ 
+ #: src/menu.c:1081
+ msgid "/replace/strip <font>"
+-msgstr ""
++msgstr "/zast±p/usuñ/ <font>"
+ 
+ #: src/menu.c:1082
+ msgid "/replace/strip <any tag> in selection"
+-msgstr ""
++msgstr "/zast±p/usuñ/ <dowolny znacznik> w zaznaczonym"
+ 
+ #: src/menu.c:1083
+ msgid "/replace/convert <td> in <th> in selection"
+-msgstr ""
++msgstr "/zast±p/przetwórz <td> do <th> w zaznaczonym"
+ 
+ #: src/menu.c:1084
+ msgid "/replace/convert <any tag> in <any other tag> in selection"
+-msgstr ""
++msgstr "/zast±p/przetwórz <dowolny znacznik> do <inny znacznik> w zaznaczonym"
+ 
+ #: src/menu.c:1218
+-#, fuzzy
+ msgid "Search pattern"
+-msgstr "wyra¿enie regularne"
++msgstr "Wzorzec dla szukania"
+ 
+ #: src/menu.c:1219
+-#, fuzzy
+ msgid "Replace string"
+ msgstr "Zamieñ tekst"
+ 
+ #: src/menu.c:1222
+ msgid "Formatstring before"
+-msgstr "Ciag formatujacy przed"
++msgstr "Ci±g formatuj±cy przed"
+ 
+ #: src/menu.c:1223
+ msgid "Formatstring after"
+-msgstr "Ciag formatujacy po"
++msgstr "Ci±g formatuj±cy po"
+ 
+ #: src/menu.c:1462
+ msgid "Bluefish config - custom menu"
+@@ -3811,14 +3791,12 @@
+ msgstr "¦cie¿ka menu"
+ 
+ #: src/menu.c:1491
+-#, fuzzy
+ msgid "custom dialog"
+-msgstr "Dialog Id¼"
++msgstr "w³asny dialog"
+ 
+ #: src/menu.c:1493
+-#, fuzzy
+ msgid "custom search and replace"
+-msgstr "Znajd¼ i zamieñ"
++msgstr "w³asne znajd¼ i zamieñ"
+ 
+ #: src/menu.c:1502
+ msgid "Number of variables"
+@@ -3829,19 +3807,16 @@
+ msgstr "Zmienne"
+ 
+ #: src/menu.c:1536
+-#, fuzzy
+ msgid "Replace where"
+-msgstr "Zamieñ na ma³e"
++msgstr "Zamieñ gdy"
+ 
+ #: src/menu.c:1547
+-#, fuzzy
+ msgid "case sensitive"
+-msgstr "Czu³y na wielko¶æ"
++msgstr "czu³y na wielko¶æ liter"
+ 
+ #: src/menu.c:1548
+-#, fuzzy
+ msgid "regular expression"
+-msgstr "Wyra¿enia regularne"
++msgstr "wyra¿enie regularne"
+ 
+ #: src/menu.c:1566
+ msgid "Add"
+@@ -4062,14 +4037,12 @@
+ msgstr "edycja znaczników"
+ 
+ #: src/snr2.c:219
+-#, fuzzy
+ msgid "Regular expression error: "
+-msgstr "Wyra¿enia regularne"
++msgstr "B³±d w wyra¿eniu regularnym: "
+ 
+ #: src/snr2.c:220
+-#, fuzzy
+ msgid "Bluefish warning: regular expression error"
+-msgstr "Wyra¿enia regularne"
++msgstr "Bluefish ostrzega: b³±d w wyra¿eniu regularnym"
+ 
+ #: src/snr2.c:633
+ msgid "Confirm replace"
+@@ -4168,12 +4141,10 @@
+ msgstr "Nowy"
+ 
+ #: src/toolbars.c:101
+-#, fuzzy
+ msgid "Open..."
+-msgstr "Opcja..."
++msgstr "Otwórz..."
+ 
+ #: src/toolbars.c:105
+-#, fuzzy
+ msgid "Save As..."
+ msgstr "Zapisz jako..."
+ 
+@@ -4190,14 +4161,12 @@
+ msgstr "Wklej"
+ 
+ #: src/toolbars.c:116
+-#, fuzzy
+ msgid "Search..."
+-msgstr "Szukaj"
++msgstr "Szukaj..."
+ 
+ #: src/toolbars.c:119
+-#, fuzzy
+ msgid "Search and Replace..."
+-msgstr "Znajd¼ i zamieñ"
++msgstr "Znajd¼ i zamieñ..."
+ 
+ #: src/toolbars.c:123
+ msgid "Undo"
+@@ -4208,23 +4177,20 @@
+ msgstr "Jednak zrób"
+ 
+ #: src/toolbars.c:128
+-#, fuzzy
+ msgid "Configure..."
+-msgstr "Konfiguruj"
++msgstr "Konfiguruj..."
+ 
+ #: src/toolbars.c:130
+-#, fuzzy
+ msgid "Print..."
+-msgstr "Drukuj"
++msgstr "Drukuj..."
+ 
+ #: src/toolbars.c:133
+-#, fuzzy
+ msgid "Spellcheck..."
+-msgstr "Sprawd¼ pisowniê"
++msgstr "Sprawd¼ pisowniê..."
+ 
+ #: src/toolbars.c:138
+ msgid "View in Mozilla"
+-msgstr "Poka¿ w Mozilla"
++msgstr "Poka¿ w Mozilli"
+ 
+ #: src/toolbars.c:168
+ msgid "QuickStart..."
+@@ -4514,7 +4480,6 @@
+ msgstr "Dodaj klasê do znacznika..."
+ 
+ #: src/toolbars.c:542
+-#, fuzzy
+ msgid "Link to stylesheet..."
+ msgstr "£±cze do stylu..."
+ 
+@@ -4539,9 +4504,8 @@
+ msgstr "Pusty blok JavaScript"
+ 
+ #: src/toolbars.c:561
+-#, fuzzy
+ msgid "Link to javascript..."
+-msgstr "£±cze do JavaScript"
++msgstr "£±cze do JavaScriptu..."
+ 
+ #: src/toolbars.c:563
+ msgid " Javascript "
+@@ -4552,34 +4516,28 @@
+ msgstr "Zwyk³y dokument WML"
+ 
+ #: src/toolbars.c:569
+-#, fuzzy
+ msgid "Card Element..."
+-msgstr "Karta"
++msgstr "Sk³adnik karty..."
+ 
+ #: src/toolbars.c:571
+-#, fuzzy
+ msgid "Postfield Element..."
+-msgstr "Element Postfield"
++msgstr "Sk³adnik pole wysy³ki..."
+ 
+ #: src/toolbars.c:573
+-#, fuzzy
+ msgid "Go Element..."
+-msgstr "Element Id¼"
++msgstr "Sk³adnik id¼..."
+ 
+ #: src/toolbars.c:575
+-#, fuzzy
+ msgid "Do Element..."
+-msgstr "Element Rób"
++msgstr "Sk³adnik rób..."
+ 
+ #: src/toolbars.c:577
+-#, fuzzy
+ msgid "Anchor Element..."
+-msgstr "Kotwica"
++msgstr "Sk³adnik kotwica..."
+ 
+ #: src/toolbars.c:579
+-#, fuzzy
+ msgid "Access Element..."
+-msgstr "Dostêp"
++msgstr "Sk³adnik dostêpowy..."
+ 
+ #: src/toolbars.c:586
+ msgid "Insert a Paragraph"
+@@ -4606,9 +4564,8 @@
+ msgstr "Brak operacji"
+ 
+ #: src/toolbars.c:601
+-#, fuzzy
+ msgid "Set variable.."
+-msgstr "Nazwa zmiennej dla wyniku"
++msgstr "Nazwa zmiennej dla wyniku.."
+ 
+ #: src/toolbars.c:604
+ msgid " WML "
+@@ -4970,37 +4927,13 @@
+ msgstr "Wersja Perla"
+ 
+ #: src/perl.c:94
+-#, fuzzy
+ msgid "Could not eval() strip_cr."
+-msgstr "Nie mo¿na zapisaæ pliku stat(2)."
++msgstr "Nie mo¿na rozwin±æ strip_cr za pomoc± eval()."
+ 
+ #: src/perl.c:115
+-#, fuzzy
+ msgid "Call Perlscript"
+-msgstr "Index górny"
++msgstr "Wywo³aj skrypt w Perlu"
+ 
+ #: src/perl.c:122
+-#, fuzzy
+ msgid "Scriptname"
+-msgstr "Indeks dolny"
+-
+-#~ msgid "Open"
+-#~ msgstr "Otwórz"
+-
+-#~ msgid "Save As"
+-#~ msgstr "Zapisz jako"
+-
+-#~ msgid "Setvar"
+-#~ msgstr "Setvar"
+-
+-#~ msgid "Error delete temporary saved file"
+-#~ msgstr "B³±d w usuwaniu zapisanego pliku tymczasowego"
+-
+-#~ msgid "Select color"
+-#~ msgstr "Wybierz kolor"
+-
+-#~ msgid "Configuration Window"
+-#~ msgstr "Okno konfiguracji"
+-
+-#~ msgid "Bluefish: configure"
+-#~ msgstr "Bluefish: konfiguracja"
++msgstr "Nazwa skryptu"
