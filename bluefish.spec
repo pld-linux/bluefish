@@ -28,8 +28,8 @@ BuildRoot:   	/tmp/%{name}-%{version}-root
 Bluefish is a GTK+ based HTML editor designed for the experienced web designer.
 
 %description -l pl
-Bluefish jest opartym na GTK+ edytorem HTML, przeznaczonym dla do¶wiadczonego 
-projektanta stron WWW.
+Bluefish jest opartym na GTK+ edytorem HTML, przeznaczonym dla do¶wiadczonych 
+projektantów stron WWW.
 
 %prep
 %setup -q
