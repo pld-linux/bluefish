@@ -7982,24 +7982,6 @@
  	AC_PATH_PROG(TIDY, tidy, /usr/bin/tidy)
  	AC_PATH_PROG(RXVT, rxvt, /usr/X11R6/bin/rxvt)
  	AC_PATH_PROG(MIDNIGHT_COMMANDER, mc, /usr/bin/mc)
-@@ -224,7 +224,7 @@
- 
- 	AC_DEFINE_UNQUOTED(WEBLINT_COMMAND,"$WEBLINT")
- 	AC_DEFINE_UNQUOTED(WHERE_IS_NETSCAPE, "$NETSCAPE")
--	AC_DEFINE_UNQUOTED(NETSCAPE_COMMAND, "$NETSCAPE -remote openURL(%s)")
-+	AC_DEFINE_UNQUOTED(NETSCAPE_COMMAND, "$NETSCAPE -remote openURL\"(%s)\"")
- 	AC_DEFINE_UNQUOTED(WHERE_IS_TIDY, "$TIDY")
-   AC_DEFINE_UNQUOTED(TIDY_COMMAND, "$TIDY -quiet --wrap 0")
- 	AC_DEFINE_UNQUOTED(WHERE_IS_RXVT, "$RXVT")
-@@ -232,7 +232,7 @@
- 	AC_DEFINE_UNQUOTED(MC_COMMAND, "$RXVT -fn 10x20 -e $MIDNIGHT_COMMANDER &")
- 	AC_DEFINE_UNQUOTED(PATH_TO_FIND, "$FIND")
- 	AC_DEFINE_UNQUOTED(PATH_TO_GREP, "$GREP")
--	AC_DEFINE_UNQUOTED(RCFILE_DEFAULTS, "external_filters: Tidy: $TIDY -quiet --wrap 0 \nexternal_commands: Midnight Commander: $RXVT -fn 10x20 -e $MIDNIGHT_COMMANDER &\nnotebook_tab_position: bottom\nbrowser_command: $NETSCAPE -remote openURL(%s)\n")
-+	AC_DEFINE_UNQUOTED(RCFILE_DEFAULTS, "external_filters: Tidy: $TIDY -quiet --wrap 0 \nexternal_commands: Midnight Commander: $RXVT -fn 10x20 -e $MIDNIGHT_COMMANDER &\nnotebook_tab_position: bottom\nbrowser_command: $NETSCAPE -remote openURL\"(%s)\"\n")
- 	
- fi
- 
 --- bluefish-0.7-patched/configure.ac.netscape	Wed Mar  6 10:04:57 2002
 +++ bluefish-0.7-patched/configure.ac	Wed Mar  6 10:09:40 2002
 @@ -210,7 +210,7 @@
@@ -8020,21 +8002,3 @@
  	AC_PATH_PROG(TIDY, tidy, /usr/bin/tidy)
  	AC_PATH_PROG(RXVT, rxvt, /usr/X11R6/bin/rxvt)
  	AC_PATH_PROG(MIDNIGHT_COMMANDER, mc, /usr/bin/mc)
-@@ -229,7 +229,7 @@
- 
- 	AC_DEFINE_UNQUOTED(WEBLINT_COMMAND,"$WEBLINT")
- 	AC_DEFINE_UNQUOTED(WHERE_IS_NETSCAPE, "$NETSCAPE")
--	AC_DEFINE_UNQUOTED(NETSCAPE_COMMAND, "$NETSCAPE -remote openURL(%s)")
-+	AC_DEFINE_UNQUOTED(NETSCAPE_COMMAND, "$NETSCAPE -remote openURL\"(%s)\"")
- 	AC_DEFINE_UNQUOTED(WHERE_IS_TIDY, "$TIDY")
-   AC_DEFINE_UNQUOTED(TIDY_COMMAND, "$TIDY -quiet --wrap 0")
- 	AC_DEFINE_UNQUOTED(WHERE_IS_RXVT, "$RXVT")
-@@ -237,7 +237,7 @@
- 	AC_DEFINE_UNQUOTED(MC_COMMAND, "$RXVT -fn 10x20 -e $MIDNIGHT_COMMANDER &")
- 	AC_DEFINE_UNQUOTED(PATH_TO_FIND, "$FIND")
- 	AC_DEFINE_UNQUOTED(PATH_TO_GREP, "$GREP")
--	AC_DEFINE_UNQUOTED(RCFILE_DEFAULTS, "external_filters: Tidy: $TIDY -quiet --wrap 0 \nexternal_commands: Midnight Commander: $RXVT -fn 10x20 -e $MIDNIGHT_COMMANDER &\nnotebook_tab_position: bottom\nbrowser_command: $NETSCAPE -remote openURL(%s)\n")
-+	AC_DEFINE_UNQUOTED(RCFILE_DEFAULTS, "external_filters: Tidy: $TIDY -quiet --wrap 0 \nexternal_commands: Midnight Commander: $RXVT -fn 10x20 -e $MIDNIGHT_COMMANDER &\nnotebook_tab_position: bottom\nbrowser_command: $NETSCAPE -remote openURL\"(%s)\"\n")
- 	
- fi
- 
