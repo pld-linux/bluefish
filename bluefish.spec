@@ -50,7 +50,7 @@ Bluefish é liberado sob a licença GPL.
 
 %build
 gettextize --copy --force
-libtoolize --copy --force
+%{__libtoolize}
 aclocal
 %{__autoconf}
 %configure \
