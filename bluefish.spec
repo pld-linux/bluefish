@@ -43,12 +43,12 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_applnkdir}/Editors
+install -d $RPM_BUILD_ROOT%{_applnkdir}/Office/Editors
 
 make install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Editors
+install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Office/Editors
 
 gzip -9nf README ChangeLog BUGS AUTHORS NEWS TODO
 
@@ -63,4 +63,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 
 %{_datadir}/bluefish
-%{_applnkdir}/Editors/bluefish.desktop
+%{_applnkdir}/Office/Editors/bluefish.desktop
