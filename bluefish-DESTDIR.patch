@@ -1,84 +1,90 @@
-diff -ruN bluefish-0.9.orig/Makefile.in bluefish-0.9/Makefile.in
---- bluefish-0.9.orig/Makefile.in	Wed Feb 19 23:39:25 2003
-+++ bluefish-0.9/Makefile.in	Wed Feb 19 23:45:25 2003
-@@ -29,7 +29,7 @@
- exec_prefix=@exec_prefix@
- bindir=@bindir@
- datadir=@datadir@
--pkgdatadir=$(datadir)/$(PACKAGE)
-+pkgdatadir=$(DESTDIR)/$(datadir)/$(PACKAGE)
- pixmapsdir=@prefix@/share/pixmaps
- 
- INSTALL = @INSTALL@
-@@ -64,12 +64,12 @@
- 	rm -f *.orig *.rej
- 
- install: src/bluefish
--	pkgdatadir=@pkgdatadir@
-+	pkgdatadir=$(DESTDIR)/@pkgdatadir@
- 	$(INSTALL_DIR) $(pkgdatadir)
- 	$(INSTALL_DATA) images/bluefish_splash.png $(pkgdatadir)
- 	@cd icons/ && $(MAKE) install
- 	if [ -d $(iconpath) ]; then \
--		$(INSTALL_DATA) inline_images/bluefish_icon1.png $(iconpath)/bluefish-icon.png ;\
-+		# $(INSTALL_DATA) inline_images/bluefish_icon1.png $(iconpath)/bluefish-icon.png ;\
- 	fi
-	@cd src/ && $(MAKE) install
- 	@cd po/ && $(MAKE) install
-diff -ruN bluefish-0.9.orig/data/Makefile.in bluefish-0.9/data/Makefile.in
---- bluefish-0.9.orig/data/Makefile.in	Wed Feb 19 23:39:25 2003
-+++ bluefish-0.9/data/Makefile.in	Wed Feb 19 23:43:55 2003
+diff -aurN bluefish-0.12.orig/data/Makefile.in bluefish-0.12/data/Makefile.in
+--- bluefish-0.12.orig/data/Makefile.in	2003-05-17 22:30:52.000000000 +0200
++++ bluefish-0.12/data/Makefile.in	2003-12-06 19:02:33.693548400 +0100
 @@ -12,7 +12,7 @@
  prefix = @prefix@
  exec_prefix = @exec_prefix@
  bindir = @bindir@
 -pkgdatadir = @pkgdatadir@
-+pkgdatadir = $(DESTDIR)/@pkgdatadir@
++pkgdatadir = $(DESTDIR)@pkgdatadir@
  datadir = @datadir@
  localedir = $(datadir)/locale
  
-@@ -33,11 +33,11 @@
+@@ -43,11 +43,11 @@
  		$(INSTALL_DATA) $$file $(pkgdatadir)/$$file ;\
  	done
  	if [ -d $(gnome2menupath) ] ; then \
 -		$(INSTALL_DATA) bluefish.desktop $(gnome2menupath) ;\
-+		$(INSTALL_DATA) bluefish.desktop $(DESTDIR)/$(gnome2menupath) ;\
++		$(INSTALL_DATA) bluefish.desktop $(DESTDIR)$(gnome2menupath) ;\
  	fi
  	if [ -d $(gnome1menupath) ] ; then \
 -		$(INSTALL_DIR) $(gnome1menupath)/Applications ;\
-+		$(INSTALL_DIR) $(DESTDIR)/$(gnome1menupath)/Applications ;\
 -		$(INSTALL_DATA) bluefish.desktop $(gnome1menupath)/Applications ;\
-+		$(INSTALL_DATA) bluefish.desktop $(DESTDIR)/$(gnome1menupath)/Applications ;\
++		$(INSTALL_DIR) $(DESTDIR)$(gnome1menupath)/Applications ;\
++		$(INSTALL_DATA) bluefish.desktop $(DESTDIR)$(gnome1menupath)/Applications ;\
  	fi
  
  uninstall:
-diff -ruN bluefish-0.9.orig/icons/Makefile.in bluefish-0.9/icons/Makefile.in
---- bluefish-0.9.orig/icons/Makefile.in	Wed Feb 19 23:39:25 2003
-+++ bluefish-0.9/icons/Makefile.in	Wed Feb 19 23:42:52 2003
-@@ -22,7 +22,7 @@
- prefix = @prefix@
- exec_prefix = @exec_prefix@
- bindir = @bindir@
--pkgdatadir = @pkgdatadir@
-+pkgdatadir = $(DESTDIR)/@pkgdatadir@
+diff -aurN bluefish-0.12.orig/icons/Makefile.in bluefish-0.12/icons/Makefile.in
+--- bluefish-0.12.orig/icons/Makefile.in	2003-04-18 20:52:05.000000000 +0200
++++ bluefish-0.12/icons/Makefile.in	2003-12-06 19:17:38.879939152 +0100
+@@ -52,9 +52,9 @@
+ bluefish:
  
- infodir = $(prefix)/info
- libdir = $(prefix)/lib/gnudl
-diff -ruN bluefish-0.9.orig/po/Makefile.in bluefish-0.9/po/Makefile.in
---- bluefish-0.9.orig/po/Makefile.in	Wed Feb 19 23:39:24 2003
-+++ bluefish-0.9/po/Makefile.in	Wed Feb 19 23:45:52 2003
+ install: all
+-	$(INSTALL_DIR) $(pkgdatadir)
++	$(INSTALL_DIR) $(DESTDIR)$(pkgdatadir)
+ 	for file in $(OBJS) ; \
+-		do $(INSTALL_DATA) $$file $(pkgdatadir) ; \
++		do $(INSTALL_DATA) $$file $(DESTDIR)$(pkgdatadir) ; \
+ 	done
+ 
+ uninstall:
+diff -aurN bluefish-0.12.orig/Makefile.in bluefish-0.12/Makefile.in
+--- bluefish-0.12.orig/Makefile.in	2003-08-01 23:17:43.000000000 +0200
++++ bluefish-0.12/Makefile.in	2003-12-06 19:06:22.760724896 +0100
+@@ -30,7 +30,7 @@
+ exec_prefix=@exec_prefix@
+ bindir=@bindir@
+ datadir=@datadir@
+-pkgdatadir=$(datadir)/$(PACKAGE)
++pkgdatadir=$(DESTDIR)$(datadir)/$(PACKAGE)
+ pixmapsdir=@prefix@/share/pixmaps
+ 
+ iconpath=@ICONPATH@
+@@ -71,13 +71,13 @@
+ 	rm -f *.orig *.rej
+ 
+ install: src/bluefish
+-	pkgdatadir=@pkgdatadir@
++	pkgdatadir=$(DESTDIR)@pkgdatadir@
+ 	$(INSTALL_DIR) $(pkgdatadir)
+ 	$(INSTALL_DATA) images/bluefish_splash.png $(pkgdatadir)
+ 	@cd icons/ && $(MAKE) install
+-	if [ -d $(iconpath) ]; then \
+-		$(INSTALL_DATA) inline_images/bluefish_icon1.png $(iconpath)/bluefish-icon.png ;\
+-	fi
++	#if [ -d $(iconpath) ]; then \
++		#$(INSTALL_DATA) inline_images/bluefish_icon1.png $(iconpath)/bluefish-icon.png ;\
++	#fi
+ 	@cd src/ && $(MAKE) install
+ 	if [ "${USE_NLS}" = "yes" ]; then \
+ 		cd po/ && $(MAKE) install;\
+diff -aurN bluefish-0.12.orig/po/Makefile.in bluefish-0.12/po/Makefile.in
+--- bluefish-0.12.orig/po/Makefile.in	2003-11-23 11:37:05.000000000 +0100
++++ bluefish-0.12/po/Makefile.in	2003-12-06 19:17:18.941970184 +0100
 @@ -14,7 +14,7 @@
  bindir = @bindir@
  pkgdatadir = @pkgdatadir@
  datadir = @datadir@
 -localedir = $(datadir)/locale
-+localedir = $(DESTDIR)/$(datadir)/locale
++localedir = $(DESTDIR)$(datadir)/locale
  
  INSTALL = @INSTALL@
  INSTALL_DIR = $(INSTALL) -d -m 755 
-diff -ruN bluefish-0.9.orig/src/Makefile.in bluefish-0.9/src/Makefile.in
---- bluefish-0.9.orig/src/Makefile.in	Wed Feb 19 23:39:25 2003
-+++ bluefish-0.9/src/Makefile.in	Wed Feb 19 23:44:37 2003
+diff -aurN bluefish-0.12.orig/src/Makefile.in bluefish-0.12/src/Makefile.in
+--- bluefish-0.12.orig/src/Makefile.in	2003-11-13 23:22:00.000000000 +0100
++++ bluefish-0.12/src/Makefile.in	2003-12-06 19:05:23.690704904 +0100
 @@ -21,7 +21,7 @@
  srcdir = @srcdir@
  prefix = @prefix@
@@ -88,17 +94,3 @@ diff -ruN bluefish-0.9.orig/src/Makefile.in bluefish-0.9/src/Makefile.in
  pkgdatadir = @pkgdatadir@
  
  infodir = $(prefix)/info
---- bluefish-0.9/Makefile.in~	Thu Feb 20 00:29:51 2003
-+++ bluefish-0.9/Makefile.in	Thu Feb 20 00:32:12 2003
-@@ -68,9 +68,9 @@
- 	$(INSTALL_DIR) $(pkgdatadir)
- 	$(INSTALL_DATA) images/bluefish_splash.png $(pkgdatadir)
- 	@cd icons/ && $(MAKE) install
--	if [ -d $(iconpath) ]; then \
-+#	if [ -d $(iconpath) ]; then \
- 		# $(INSTALL_DATA) inline_images/bluefish_icon1.png $(iconpath)/bluefish-icon.png ;\
--	fi
-+#	fi
- 	@cd src/ && $(MAKE) install
- 	@cd po/ && $(MAKE) install
- 	@cd data/ && $(MAKE) install
