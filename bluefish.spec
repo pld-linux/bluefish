@@ -8,7 +8,10 @@ Group:		X11/Applications/Editors
 Group(de):	X11/Applikationen/Editors
 Group(pl):	X11/Aplikacje/Edytory
 Group(pt):	X11/Aplicações/Editores
-Source0:	http://bluefish.openoffice.nl/download/%{name}-%{version}.tar.bz2
+# The master server is here
+Source0:	http://pkedu.fbt.eitn.wau.nl/~olivier/downloads/%{name}-%{version}.tar.bz2
+# but if you want ftp: try this one
+# Source0:	ftp://bluefish.advancecreations.com/bluefish/downloads/%{name}-%{version}.tar.bz2
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-DESTDIR.patch
