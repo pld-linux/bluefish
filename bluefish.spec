@@ -30,7 +30,6 @@ BuildRequires:	libtiff-devel
 BuildRequires:	libungif-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_prefix		/usr/X11R6
 
 %description
 Bluefish is a GTK+ based HTML editor designed for the experienced web
