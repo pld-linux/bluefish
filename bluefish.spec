@@ -4,12 +4,12 @@
 #
 # note: optflags used with this bcond are very strong, and partially
 #	obsoleted for C (like -fno-rtti) - use at own risk!
-# 
+#
 Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl):	Bluefish - Edytor HTML dla zaawansowanych
 Name:		bluefish
 Version:	0.11
-Release:	1	
+Release:	1
 License:	GPL
 Group:		X11/Applications/Editors
 # The master server is here
@@ -61,7 +61,7 @@ Bluefish é liberado sob a licença GPL.
 %{__autoconf}
 %configure \
 	%{?_with_opts:--enable-auto-optimization}
-	
+
 %{__make}
 
 %install
@@ -80,7 +80,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc doc 
+%doc doc
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/%{name}
 %{_desktopdir}/*
