@@ -28,8 +28,9 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng >= 1.2.5
 BuildRequires:	libtiff-devel
 BuildRequires:	libungif-devel
+BuildRequires:	pkgconfig
+BuildRequires:	pcre-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
 
 %description
 Bluefish is a GTK+ based HTML editor designed for the experienced web
