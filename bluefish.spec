@@ -36,7 +36,6 @@ do¶wiadczonych projektantów stron WWW.
 
 %build
 gettextize --copy --force
-LDFLAGS="-s"; export LDFLAGS
 %configure \
 	--with-install-location=%{_datadir}/bluefish
 %{__make}
