@@ -11,9 +11,7 @@ Source1:	bluefish.desktop
 Patch0:		bluefish-DESTDIR.patch
 URL:		http://bluefish.linuxbox.com/
 BuildRequires:	gtk+-devel >= 1.2.0
-BuildRequires:	glib-devel >= 1.2.0
 BuildRequires:	imlib-devel
-BuildRequires:	XFree86-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
