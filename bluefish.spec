@@ -52,7 +52,7 @@ Bluefish é liberado sob a licença GPL.
 gettextize --copy --force
 libtoolize --copy --force
 aclocal
-autoconf
+%{__autoconf}
 %configure \
 	--with-install-location=%{_datadir}/bluefish
 %{__make}
