@@ -1,7 +1,7 @@
 Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl):	Bluefish - Edytor HTML dla zaawansowanych
 Name:		bluefish
-Version:	0.3.1
+Version:	0.3.2
 Release:	1
 Group:		X11/Applications/Editors
 Group(pl):	X11/Aplikacje/Edytory
@@ -39,7 +39,7 @@ przeznaczonym dla do¶wiadczonego projektanta stron WWW.
 CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
 ./configure %{_target_platform} \
 	--exec-prefix=%{_prefix} \
-	--with-install-location=%{_bindir}
+	--with-install-location=%{_datadir}/bluefish
 
 make
 
@@ -61,6 +61,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc {README,ChangeLog,BUGS,AUTHORS,NEWS,TODO}.gz
 
 %attr(755,root,root) %{_bindir}/*
+%{_datadir}/bluefish
 /etc/X11/applnk/Editors/bluefish.desktop
 
 %changelog
