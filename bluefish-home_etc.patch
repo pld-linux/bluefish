@@ -1,0 +1,193 @@
+diff -Nru bluefish-0.11.orig/src/bluefish.c bluefish-0.11/src/bluefish.c
+--- bluefish-0.11.orig/src/bluefish.c	2003-07-27 17:26:58.000000000 +0200
++++ bluefish-0.11/src/bluefish.c	2003-11-19 12:48:08.000000000 +0100
+@@ -110,7 +110,8 @@
+ #ifndef NOSPLASH
+ 	GtkWidget *splash_window;
+ #endif /* #ifndef NOSPLASH */
+-
++	gchar *home_etc = getenv("HOME_ETC");
++	
+ #ifdef ENABLE_NLS                                                               
+ 	setlocale(LC_ALL,"");                                                   
+ 	bindtextdomain(PACKAGE,LOCALEDIR);
+@@ -139,7 +140,7 @@
+ #endif /* #ifndef NOSPLASH */
+ 
+ 	{
+-		gchar *filename = g_strconcat(g_get_home_dir(), "/.bluefish/dir_history", NULL);
++		gchar *filename = g_strconcat(home_etc ? home_etc : g_get_home_dir(), "/.bluefish/dir_history", NULL);
+ 		main_v->recent_directories = get_stringlist(filename, NULL);
+ 		g_free(filename);
+ 	}
+@@ -171,7 +172,7 @@
+ 		gchar *shortcutfilename;
+ 		GtkSettings* gtksettings = gtk_settings_get_default();
+ 		g_object_set(G_OBJECT(gtksettings), "gtk-can-change-accels", TRUE, NULL); 
+-		shortcutfilename = g_strconcat(g_get_home_dir(), "/.bluefish/menudump_2", NULL);
++		shortcutfilename = g_strconcat(home_etc ? home_etc : g_get_home_dir(), "/.bluefish/menudump_2", NULL);
+ 		gtk_accel_map_load(shortcutfilename);
+ 		g_free(shortcutfilename);
+ 	}
+@@ -218,7 +219,8 @@
+ 	
+ 	rcfile_save_all();
+ 	{
+-		gchar *filename = g_strconcat(g_get_home_dir(), "/.bluefish/dir_history", NULL);
++		gchar *home_etc = getenv("HOME_ETC");
++		gchar *filename = g_strconcat(home_etc ? home_etc : g_get_home_dir(), "/.bluefish/dir_history", NULL);
+ 		put_stringlist_limited(filename, main_v->recent_directories, main_v->props.max_dir_history);
+ 		g_free(filename);
+ 	}
+diff -Nru bluefish-0.11.orig/src/fref.c bluefish-0.11/src/fref.c
+--- bluefish-0.11.orig/src/fref.c	2003-07-27 17:26:58.000000000 +0200
++++ bluefish-0.11/src/fref.c	2003-11-19 12:45:04.000000000 +0100
+@@ -1456,7 +1456,8 @@
+ 
+ 
+ static void fref_popup_menu_rescan_lcb(GtkWidget *widget,gpointer user_data) {
+-	gchar *userdir = g_strconcat(g_get_home_dir(), "/.bluefish/", NULL);
++	gchar *home_etc = getenv("HOME_ETC");
++	gchar *userdir = g_strconcat(home_etc ? home_etc : g_get_home_dir(), "/.bluefish/", NULL);
+ 	DEBUG_MSG("fref_popup_menu_rescan_lcb, started\n");
+ 	fref_rescan_dir(PKGDATADIR);
+ 	fref_rescan_dir(userdir);
+diff -Nru bluefish-0.11.orig/src/menu.c bluefish-0.11/src/menu.c
+--- bluefish-0.11.orig/src/menu.c	2003-07-27 17:26:58.000000000 +0200
++++ bluefish-0.11/src/menu.c	2003-11-19 12:49:55.000000000 +0100
+@@ -796,11 +796,12 @@
+ 
+ void recent_menu_init() {
+ 	gchar *recentfile;
++	gchar *home_etc = getenv("HOME_ETC");
+ 	GList *filenames=NULL, *tmp, *tmp2, *newlist=NULL;
+ 	gint recent_file_count=0;
+ 
+ 	DEBUG_MSG("open_recent_list, started\n");
+-	recentfile = g_strconcat(g_get_home_dir(), "/.bluefish/recentlist", NULL);
++	recentfile = g_strconcat(home_etc ? home_etc : g_get_home_dir(), "/.bluefish/recentlist", NULL);
+ 	filenames = get_stringlist(recentfile, filenames);
+ 	if (!filenames) {
+ 		filenames = add_to_stringlist(menus.recent_files, _("(none)"));
+@@ -862,7 +863,8 @@
+ 
+ 	} else {
+ 		gchar *tmpfilename, *recentfile;
+-		recentfile = g_strconcat(g_get_home_dir(), "/.bluefish/recentlist", NULL);
++		gchar *home_etc = getenv("HOME_ETC");
++		recentfile = g_strconcat(home_etc ? home_etc : g_get_home_dir(), "/.bluefish/recentlist", NULL);
+ 		/* save the new list */
+ 		tmpfilename = g_strconcat(filename, "\n", NULL);
+ 		DEBUG_MSG("add_to_recent_list, trying to append to %s\n", recentfile);
+diff -Nru bluefish-0.11.orig/src/rcfile.c bluefish-0.11/src/rcfile.c
+--- bluefish-0.11.orig/src/rcfile.c	2003-07-27 18:19:58.000000000 +0200
++++ bluefish-0.11/src/rcfile.c	2003-11-19 12:56:12.000000000 +0100
+@@ -469,6 +469,7 @@
+ void rcfile_parse_main(void)
+ {
+ 	gchar *filename;
++	gchar *home_etc = getenv("HOME_ETC");
+ 
+ 	DEBUG_MSG("rcfile_parse_main, started\n");
+ 
+@@ -478,7 +479,7 @@
+ 	/*Make the config_rc list ready for filling with data and set default values */
+ 	main_configlist = props_init_main(NULL);
+ 
+-	filename = g_strconcat(g_get_home_dir(), "/.bluefish/rcfile_v2", NULL);
++	filename = g_strconcat(home_etc ? home_etc : g_get_home_dir(), "/.bluefish/rcfile_v2", NULL);
+ 	if (!parse_config_file(main_configlist, filename)) {
+ 		/* should we initialize some things ?? */
+ 	}
+@@ -567,7 +568,7 @@
+ 		main_v->props.filefilters = g_list_append(main_v->props.filefilters, arr);
+ 	}
+ 	if (main_v->props.reference_files == NULL) {
+-		gchar *userdir = g_strconcat(g_get_home_dir(), "/.bluefish/", NULL);
++		gchar *userdir = g_strconcat(home_etc ? home_etc : g_get_home_dir(), "/.bluefish/", NULL);
+ 		/* if the user does not yet have any function reference files, set them to default values */
+ 		fref_rescan_dir(PKGDATADIR);
+ 		fref_rescan_dir(userdir);
+@@ -589,7 +590,8 @@
+ }
+ 
+ static gint rcfile_save_main(void) {
+-	gchar *filename = g_strconcat(g_get_home_dir(), "/.bluefish/rcfile_v2", NULL);
++	gchar *home_etc = getenv("HOME_ETC");
++	gchar *filename = g_strconcat(home_etc ? home_etc : g_get_home_dir(), "/.bluefish/rcfile_v2", NULL);
+ 	return save_config_file(main_configlist, filename);
+ }
+ /*
+@@ -607,13 +609,14 @@
+ void rcfile_parse_highlighting(void) {
+ 	gchar *filename;
+ 	gchar *defaultfile;
++	gchar *home_etc = getenv("HOME_ETC");
+ 
+ 	DEBUG_MSG("rcfile_parse_highlighting, started\n");
+ 
+ 	highlighting_configlist = NULL;
+ 	init_prop_arraylist(&highlighting_configlist, &main_v->props.highlight_patterns, "patterns:", 0);
+ 
+-	filename = g_strconcat(g_get_home_dir(), "/.bluefish/highlighting", NULL);
++	filename = g_strconcat(home_etc ? home_etc : g_get_home_dir(), "/.bluefish/highlighting", NULL);
+ 	defaultfile = return_first_existing_filename(PKGDATADIR"highlighting.default",
+ 									"data/highlighting.default",
+ 									"../data/highlighting.default",NULL);
+@@ -638,7 +641,8 @@
+ 
+ static gint rcfile_save_highlighting(void) {
+ 	gint retval;
+-	gchar *filename = g_strconcat(g_get_home_dir(), "/.bluefish/highlighting", NULL);
++	gchar *home_etc = getenv("HOME_ETC");
++	gchar *filename = g_strconcat(home_etc ? home_etc : g_get_home_dir(), "/.bluefish/highlighting", NULL);
+ 	retval = save_config_file(highlighting_configlist, filename);
+ 	g_free(filename);
+ 	return retval;
+@@ -647,6 +651,7 @@
+ void rcfile_parse_custom_menu(void) {
+ 	gchar *filename;
+ 	gchar *defaultfile;
++	gchar *home_etc = getenv("HOME_ETC");
+ 	DEBUG_MSG("rcfile_parse_custom_menu, started\n");
+ 
+ 	custom_menu_configlist = NULL;
+@@ -654,7 +659,7 @@
+ 	init_prop_arraylist(&custom_menu_configlist, &main_v->props.cmenu_insert, "cmenu_insert:", 0);
+ 	init_prop_arraylist(&custom_menu_configlist, &main_v->props.cmenu_replace, "cmenu_replace:", 0);
+ 
+-	filename = g_strconcat(g_get_home_dir(), "/.bluefish/custom_menu", NULL);
++	filename = g_strconcat(home_etc ? home_etc : g_get_home_dir(), "/.bluefish/custom_menu", NULL);
+ 	defaultfile = return_first_existing_filename(PKGDATADIR"custom_menu.default",
+ 									"data/custom_menu.default",
+ 									"../data/custom_menu.default",NULL);
+@@ -771,7 +776,8 @@
+ }
+ static gint rcfile_save_custom_menu(void) {
+ 	gint retval;
+-	gchar *filename = g_strconcat(g_get_home_dir(), "/.bluefish/custom_menu", NULL);
++	gchar *home_etc = getenv("HOME_ETC");
++	gchar *filename = g_strconcat(home_etc ? home_etc : g_get_home_dir(), "/.bluefish/custom_menu", NULL);
+ 	retval = save_config_file(custom_menu_configlist, filename);
+ 	g_free(filename);
+ 	return retval;
+@@ -779,7 +785,8 @@
+ 
+ #define DIR_MODE (S_IRWXU | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH)	/* same as 0755 */
+ void rcfile_check_directory(void) {
+-	gchar *rcdir = g_strconcat(g_get_home_dir(), "/.bluefish", NULL);
++	gchar *home_etc = getenv("HOME_ETC");
++	gchar *rcdir = g_strconcat(home_etc ? home_etc : g_get_home_dir(), "/.bluefish", NULL);
+ 	if (!g_file_test(rcdir, G_FILE_TEST_IS_DIR)) {
+ 		mkdir(rcdir, DIR_MODE);
+ 	}
+@@ -799,7 +806,8 @@
+ 	break;
+ 	case 3:
+ 		{
+-			gchar *shortcutfilename = g_strconcat(g_get_home_dir(), "/.bluefish/menudump_2", NULL);
++			gchar *home_etc = getenv("HOME_ETC");
++			gchar *shortcutfilename = g_strconcat(home_etc ? home_etc : g_get_home_dir(), "/.bluefish/menudump_2", NULL);
+ 			gtk_accel_map_save(shortcutfilename);
+ 			g_free(shortcutfilename);
+ 		}
