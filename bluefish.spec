@@ -45,11 +45,11 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/etc/X11/applnk/Editors
+install -d $RPM_BUILD_ROOT/usr/X11R6/share/applnk/Editors
 
 make install DESTDIR=$RPM_BUILD_ROOT
 
-install %{SOURCE1} $RPM_BUILD_ROOT/etc/X11/applnk/Editors
+install %{SOURCE1} $RPM_BUILD_ROOT/usr/X11R6/share/applnk/Editors
 
 gzip -9nf README ChangeLog BUGS AUTHORS NEWS TODO
 
@@ -62,4 +62,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/bluefish
-/etc/X11/applnk/Editors/bluefish.desktop
+/usr/X11R6/share/applnk/Editors/bluefish.desktop
