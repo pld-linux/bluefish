@@ -14,6 +14,7 @@ Patch1:		%{name}-ac_lt.patch
 URL:		http://bluefish.openoffice.nl/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	libtool
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+-devel >= 1.2.0
 BuildRequires:	imlib-devel
