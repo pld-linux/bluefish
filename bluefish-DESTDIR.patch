@@ -1,96 +1,41 @@
-diff -aurN bluefish-0.12.orig/data/Makefile.in bluefish-0.12/data/Makefile.in
---- bluefish-0.12.orig/data/Makefile.in	2003-05-17 22:30:52.000000000 +0200
-+++ bluefish-0.12/data/Makefile.in	2003-12-06 19:02:33.693548400 +0100
-@@ -12,7 +12,7 @@
- prefix = @prefix@
- exec_prefix = @exec_prefix@
- bindir = @bindir@
--pkgdatadir = @pkgdatadir@
-+pkgdatadir = $(DESTDIR)@pkgdatadir@
- datadir = @datadir@
- localedir = $(datadir)/locale
- 
-@@ -43,11 +43,11 @@
- 		$(INSTALL_DATA) $$file $(pkgdatadir)/$$file ;\
+--- bluefish-0.13/data/Makefile.in.orig	2004-04-09 12:30:01.000000000 +0200
++++ bluefish-0.13/data/Makefile.in	2004-04-09 21:37:30.000000000 +0200
+@@ -52,23 +52,21 @@
+ 	@for file in $(FUNCREFFILES) ; do \
+ 		$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdatadir)/$$file ;\
  	done
- 	if [ -d $(gnome2menupath) ] ; then \
--		$(INSTALL_DATA) bluefish.desktop $(gnome2menupath) ;\
-+		$(INSTALL_DATA) bluefish.desktop $(DESTDIR)$(gnome2menupath) ;\
- 	fi
- 	if [ -d $(gnome1menupath) ] ; then \
--		$(INSTALL_DIR) $(gnome1menupath)/Applications ;\
--		$(INSTALL_DATA) bluefish.desktop $(gnome1menupath)/Applications ;\
-+		$(INSTALL_DIR) $(DESTDIR)$(gnome1menupath)/Applications ;\
-+		$(INSTALL_DATA) bluefish.desktop $(DESTDIR)$(gnome1menupath)/Applications ;\
- 	fi
- 
- uninstall:
-diff -aurN bluefish-0.12.orig/icons/Makefile.in bluefish-0.12/icons/Makefile.in
---- bluefish-0.12.orig/icons/Makefile.in	2003-04-18 20:52:05.000000000 +0200
-+++ bluefish-0.12/icons/Makefile.in	2003-12-06 19:17:38.879939152 +0100
-@@ -52,9 +52,9 @@
- bluefish:
- 
- install: all
--	$(INSTALL_DIR) $(pkgdatadir)
-+	$(INSTALL_DIR) $(DESTDIR)$(pkgdatadir)
- 	for file in $(OBJS) ; \
--		do $(INSTALL_DATA) $$file $(pkgdatadir) ; \
-+		do $(INSTALL_DATA) $$file $(DESTDIR)$(pkgdatadir) ; \
- 	done
- 
- uninstall:
-diff -aurN bluefish-0.12.orig/Makefile.in bluefish-0.12/Makefile.in
---- bluefish-0.12.orig/Makefile.in	2003-08-01 23:17:43.000000000 +0200
-+++ bluefish-0.12/Makefile.in	2003-12-06 19:06:22.760724896 +0100
-@@ -30,7 +30,7 @@
- exec_prefix=@exec_prefix@
- bindir=@bindir@
- datadir=@datadir@
--pkgdatadir=$(datadir)/$(PACKAGE)
-+pkgdatadir=$(DESTDIR)$(datadir)/$(PACKAGE)
- pixmapsdir=@prefix@/share/pixmaps
- 
- iconpath=@ICONPATH@
-@@ -71,13 +71,13 @@
- 	rm -f *.orig *.rej
- 
- install: src/bluefish
--	pkgdatadir=@pkgdatadir@
-+	pkgdatadir=$(DESTDIR)@pkgdatadir@
- 	$(INSTALL_DIR) $(pkgdatadir)
- 	$(INSTALL_DATA) images/bluefish_splash.png $(pkgdatadir)
- 	@cd icons/ && $(MAKE) install
--	if [ -d $(iconpath) ]; then \
--		$(INSTALL_DATA) inline_images/bluefish_icon1.png $(iconpath)/bluefish-icon.png ;\
+-	if [ -d $(gnome2applications) ] ; then \
+-		$(INSTALL_DATA) bluefish.desktop $(DESTDIR)$(gnome2applications) ;\
 -	fi
-+	#if [ -d $(iconpath) ]; then \
-+		#$(INSTALL_DATA) inline_images/bluefish_icon1.png $(iconpath)/bluefish-icon.png ;\
-+	#fi
- 	@cd src/ && $(MAKE) install
- 	if [ "${USE_NLS}" = "yes" ]; then \
- 		cd po/ && $(MAKE) install;\
-diff -aurN bluefish-0.12.orig/po/Makefile.in bluefish-0.12/po/Makefile.in
---- bluefish-0.12.orig/po/Makefile.in	2003-11-23 11:37:05.000000000 +0100
-+++ bluefish-0.12/po/Makefile.in	2003-12-06 19:17:18.941970184 +0100
-@@ -14,7 +14,7 @@
- bindir = @bindir@
- pkgdatadir = @pkgdatadir@
- datadir = @datadir@
--localedir = $(datadir)/locale
-+localedir = $(DESTDIR)$(datadir)/locale
+-	if [ -d $(gnome1menupath) ] ; then \
+-		$(INSTALL_DIR) $(DESTDIR)$(gnome1menupath)/Applications ;\
+-		$(INSTALL_DATA) bluefish.desktop $(DESTDIR)$(gnome1menupath)/Applications ;\
+-	fi
+-	if [ -d $(gnome2appreg) ] ; then \
+-		$(INSTALL_DATA) bluefish.applications $(DESTDIR)$(gnome2appreg) ;\
+-	fi
+-	if [ -d $(gnome2mime-info) ] ; then \
+-		$(INSTALL_DATA) bluefish.mime $(DESTDIR)$(gnome2mime-info) ;\
+-		$(INSTALL_DATA) bluefish.keys $(DESTDIR)$(gnome2mime-info) ;\
+-	fi
+-	if [ -d $(gnome2icons) ] ; then \
+-		$(INSTALL_DATA) gnome-application-bluefish.png $(DESTDIR)$(gnome2icons) ;\
+-	fi
++	$(INSTALL_DIR) $(DESTDIR)$(gnome2applications)
++	$(INSTALL_DATA) bluefish.desktop $(DESTDIR)$(gnome2applications)
++
++	$(INSTALL_DIR) $(DESTDIR)$(gnome1menupath)/Applications
++	$(INSTALL_DATA) bluefish.desktop $(DESTDIR)$(gnome1menupath)/Applications
++
++	$(INSTALL_DIR) $(DESTDIR)$(gnome2appreg)
++	$(INSTALL_DATA) bluefish.applications $(DESTDIR)$(gnome2appreg)
++
++	$(INSTALL_DIR) $(DESTDIR)$(gnome2mime-info)
++	$(INSTALL_DATA) bluefish.mime $(DESTDIR)$(gnome2mime-info)
++	$(INSTALL_DATA) bluefish.keys $(DESTDIR)$(gnome2mime-info)
++
++	$(INSTALL_DIR) $(DESTDIR)$(gnome2icons)
++	$(INSTALL_DATA) gnome-application-bluefish.png $(DESTDIR)$(gnome2icons)
  
- INSTALL = @INSTALL@
- INSTALL_DIR = $(INSTALL) -d -m 755 
-diff -aurN bluefish-0.12.orig/src/Makefile.in bluefish-0.12/src/Makefile.in
---- bluefish-0.12.orig/src/Makefile.in	2003-11-13 23:22:00.000000000 +0100
-+++ bluefish-0.12/src/Makefile.in	2003-12-06 19:05:23.690704904 +0100
-@@ -21,7 +21,7 @@
- srcdir = @srcdir@
- prefix = @prefix@
- exec_prefix = @exec_prefix@
--bindir = @bindir@
-+bindir = $(DESTDIR)/@bindir@
- pkgdatadir = @pkgdatadir@
- 
- infodir = $(prefix)/info
+ uninstall:
+ 	@for file in $(DEFAULTFILES) ; do \

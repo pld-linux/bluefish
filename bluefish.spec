@@ -8,13 +8,13 @@
 Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl):	Bluefish - Edytor HTML-a dla zaawansowanych
 Name:		bluefish
-Version:	0.12
+Version:	0.13
 Release:	1
 License:	GPL
 Group:		X11/Applications/Editors
 # The master server is here
 Source0:	http://pkedu.fbt.eitn.wau.nl/~olivier/downloads/%{name}-%{version}.tar.bz2
-# Source0-md5:	9b01162747c7be6e2fc46475544bf995
+# Source0-md5:	e5f1f5eff0933dc68a51adcdce352826
 # but if you want ftp: try this one
 # Source0:	ftp://bluefish.advancecreations.com/bluefish/downloads/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-DESTDIR.patch
@@ -70,6 +70,7 @@ Bluefish é liberado sob a licença GPL.
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_pixmapsdir},%{_desktopdir}}
+#install -d $RPM_BUILD_ROOT%{_datadir}/{application-registry,mime-info}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -86,5 +87,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/%{name}
+%{_datadir}/application-registry/*
+%{_datadir}/mime-info/*
 %{_desktopdir}/*
 %{_pixmapsdir}/*
