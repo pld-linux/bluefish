@@ -2,8 +2,8 @@ Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl):	Bluefish - Edytor HTML dla zaawansowanych
 Summary(pt_BR):	Editor HTML Bluefish
 Name:		bluefish
-Version:	0.7
-Release:	5
+Version:	0.9
+Release:	0.2
 License:	GPL
 Group:		X11/Applications/Editors
 # The master server is here
@@ -22,10 +22,10 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	gettext-devel
-BuildRequires:	gtk+-devel >= 1.2.0
+BuildRequires:	gtk+2-devel
 BuildRequires:	imlib-devel
 BuildRequires:	libjpeg-devel
-BuildRequires:	libpng >= 1.0.8
+BuildRequires:	libpng >= 1.2.5
 BuildRequires:	libtiff-devel
 BuildRequires:	libungif-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -48,17 +48,17 @@ Bluefish é liberado sob a licença GPL.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
+#%patch1 -p1
+#%patch2 -p1
+#%patch3 -p1
+#%patch4 -p1
 
 %build
 %ifarch i586
-OPTIMIZATION="--with-pentium"
+OPTIMIZATION="--enable-gcc3-optimization=pentium"
 %endif
 %ifarch i686 athlon
-OPTIMIZATION="--with-pentiumpro"
+OPTIMIZATION="--enable-gcc3-optimization=pentiumpro"
 %endif
 
 %{__gettextize}
@@ -66,21 +66,26 @@ OPTIMIZATION="--with-pentiumpro"
 %{__aclocal}
 %{__autoconf}
 %configure \
-	--with-install-location=%{_datadir}/bluefish \
-	--with-autocomplet \
-	$OPTIMIZATION
-	
+	$OPTIMIZATION	
 %{__make}
+
+%{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_applnkdir}/Editors/HTML,%{_pixmapsdir}}
-
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT{%{_applnkdir}/Editors/HTML,%{_pixmapsdir},%{_datadir},%{_bindir}}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Editors/HTML
-install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
+install %{SOURCE4} $RPM_BUILD_ROOT%{_pixmapsdir}/
+
+cd po
+make install DESTDIR=$RPM_BUILD_ROOT
+cd ..
+
+install src/%{name} $RPM_BUILD_ROOT%{_bindir}
+
+install -d icons/ $RPM_BUILD_ROOT%{_datadir}/%{name}
+install data/*.default $RPM_BUILD_ROOT%{_datadir}/%{name}
 
 %find_lang %{name}
 
@@ -89,10 +94,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc README ChangeLog BUGS AUTHORS NEWS TODO
+%doc doc 
 %attr(755,root,root) %{_bindir}/*
-%{_mandir}/man1/*
-
-%{_datadir}/bluefish
+%{_datadir}
 %{_applnkdir}/Editors/HTML/bluefish.desktop
 %{_pixmapsdir}/*
