@@ -3,7 +3,7 @@ Summary(pl):	Bluefish - Edytor HTML dla zaawansowanych
 Summary(pt_BR):	Editor HTML Bluefish
 Name:		bluefish
 Version:	0.7
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications/Editors
 Group(de):	X11/Applikationen/Editors
