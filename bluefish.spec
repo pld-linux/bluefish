@@ -47,7 +47,7 @@ Bluefish jest opartym na GTK+ edytorem HTML-a, przeznaczonym dla
 do¶wiadczonych projektantów stron WWW.
 
 %description -l pt_BR
-O bluefish é um editor HTML feito com GTK para web designers
+O bluefish é um editor HTML feito com GTK+ para web designers
 experientes. Atualmente ele está em estágio alfa, mas já está bastante
 usável. Algumas opções ainda não estão completamente finalizadas.
 Bluefish é liberado sob a licença GPL.
