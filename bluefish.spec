@@ -3,7 +3,7 @@ Summary(pl):	Bluefish - Edytor HTML dla zaawansowanych
 Summary(pt_BR):	Editor HTML Bluefish
 Name:		bluefish
 Version:	0.9
-Release:	0.2
+Release:	1	
 License:	GPL
 Group:		X11/Applications/Editors
 # The master server is here
@@ -13,10 +13,10 @@ Source0:	http://pkedu.fbt.eitn.wau.nl/~olivier/downloads/%{name}-%{version}.tar.
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-DESTDIR.patch
-Patch1:		%{name}-ac_lt.patch
-Patch2:		%{name}-locale.patch
-Patch3:		%{name}-netscape-now-mozilla.patch
-Patch4:		%{name}-pl.patch
+#Patch1:		%{name}-ac_lt.patch
+#Patch2:		%{name}-locale.patch
+#Patch3:		%{name}-netscape-now-mozilla.patch
+#Patch4:		%{name}-pl.patch
 URL:		http://bluefish.openoffice.nl/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -73,10 +73,10 @@ OPTIMIZATION="--enable-gcc3-optimization=pentiumpro"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_applnkdir}/Editors/HTML,%{_pixmapsdir},%{_datadir},%{_bindir}}
+install -d $RPM_BUILD_ROOT{%{_applnkdir}/Editors/HTML,%{_pixmapsdir},%{_datadir}/%{name},%{_bindir}}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Editors/HTML
-install %{SOURCE4} $RPM_BUILD_ROOT%{_pixmapsdir}/
+install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}/
 
 cd po
 make install DESTDIR=$RPM_BUILD_ROOT
@@ -84,9 +84,10 @@ cd ..
 
 install src/%{name} $RPM_BUILD_ROOT%{_bindir}
 
-install -d icons/*.png $RPM_BUILD_ROOT%{_datadir}/%{name}/
+install {images,icons}/*.png $RPM_BUILD_ROOT%{_datadir}/%{name}/
 install data/*.default $RPM_BUILD_ROOT%{_datadir}/%{name}/
-ln -sf %{_pixmapsdir}/%{name}.png $RPM_BUILD_ROOT%{_datadir}/%{name}/
+
+rm -rf `find -name CVS`
 
 %find_lang %{name}
 
