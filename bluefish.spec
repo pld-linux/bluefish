@@ -8,6 +8,7 @@ License:	GPL
 Group:		X11/Applications/Editors
 # The master server is here
 Source0:	http://pkedu.fbt.eitn.wau.nl/~olivier/downloads/%{name}-%{version}.tar.bz2
+# Source0-md5:	6f3dd98df0959469d3637a44eb0e08cf
 # but if you want ftp: try this one
 # Source0:	ftp://bluefish.advancecreations.com/bluefish/downloads/%{name}-%{version}.tar.bz2
 Source1:	%{name}.desktop
