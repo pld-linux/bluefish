@@ -1,0 +1,48 @@
+--- Makefile.in.org	Mon Dec  4 00:39:11 2000
++++ Makefile.in	Mon Mar 19 13:39:28 2001
+@@ -67,14 +67,14 @@
+ 	@cd intl; $(MAKE) install
+ 	@cd po; $(MAKE) install
+ 	@cd man; $(MAKE) install
+-	$(INSTALL) -d -m 755 $(datadir)
+-	$(INSTALL) -d -m 755 $(pkgdatadir)
+-	$(INSTALL) -d -m 755 $(pixmapsdir)
+-	$(INSTALL) -m 644 ./pixmaps/bluefish_icon.xpm $(pixmapsdir)
+-	$(INSTALL) -m 644 ./data/php3_functions $(pkgdatadir)/php3_functions
+-	$(INSTALL) -m 644 ./data/ssi_functions $(pkgdatadir)/ssi_functions
+-	$(INSTALL) -m 644 ./data/rxml_functions $(pkgdatadir)/rxml_functions	
+-	$(INSTALL) -m 644 ./data/php4_functions $(pkgdatadir)/php4_functions
++	$(INSTALL) -d -m 755 $(DESTDIR)$(datadir)
++	$(INSTALL) -d -m 755 $(DESTDIR)$(pkgdatadir)
++	$(INSTALL) -d -m 755 $(DESTDIR)$(pixmapsdir)
++	$(INSTALL) -m 644 ./pixmaps/bluefish_icon.xpm $(DESTDIR)$(pixmapsdir)
++	$(INSTALL) -m 644 ./data/php3_functions $(DESTDIR)$(pkgdatadir)/php3_functions
++	$(INSTALL) -m 644 ./data/ssi_functions $(DESTDIR)$(pkgdatadir)/ssi_functions
++	$(INSTALL) -m 644 ./data/rxml_functions $(DESTDIR)$(pkgdatadir)/rxml_functions	
++	$(INSTALL) -m 644 ./data/php4_functions $(DESTDIR)$(pkgdatadir)/php4_functions
+ 	@cd ${srcdir}/ && $(MAKE) install
+ 
+ 
+--- man/Makefile.in.org	Sat Nov 25 11:20:47 2000
++++ man/Makefile.in	Mon Mar 19 13:46:21 2001
+@@ -54,5 +54,5 @@
+ distclean: patchclean
+ 
+ install: all
+-	$(INSTALL) -d -m 755 $(mandir)
+-	$(INSTALL) -m 644 ./$(OBJS) $(mandir)/$(OBJS)
++	$(INSTALL) -d -m 755 $(DESTDIR)$(mandir)
++	$(INSTALL) -m 644 ./$(OBJS) $(DESTDIR)$(mandir)/$(OBJS)
+--- src/Makefile.in.org	Sat Dec  9 11:20:46 2000
++++ src/Makefile.in	Mon Mar 19 13:51:29 2001
+@@ -70,8 +70,8 @@
+ 	rm -f config.h
+ 
+ install: all
+-	$(INSTALL_DIR) $(bindir)
+-	$(INSTALL_PROGRAM) ./bluefish $(bindir)/bluefish
++	$(INSTALL_DIR) $(DESTDIR)$(bindir)
++	$(INSTALL_PROGRAM) ./bluefish $(DESTDIR)$(bindir)/bluefish
+ 
+ uninstall:
+ 	/bin/rm -f $(bindir)/bluefish
