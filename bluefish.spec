@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_with opts	# use extra optimizations
+%bcond_with	opts	# use extra optimizations
 #
 # note: optflags used with this bcond are very strong, and partially
 #	obsoleted for C (like -fno-rtti) - use at own risk!
@@ -9,7 +9,7 @@ Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl):	Bluefish - Edytor HTML-a dla zaawansowanych
 Name:		bluefish
 Version:	1.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Editors
 # The master server is here
@@ -17,10 +17,9 @@ Source0:	http://pkedu.fbt.eitn.wau.nl/~olivier/downloads/%{name}-%{version}.tar.
 # Source0-md5:	a3cf8abd282d850407e8c7eed38d15e7
 # but if you want ftp: try this one
 # Source0:	ftp://bluefish.advancecreations.com/bluefish/downloads/%{name}-%{version}.tar.bz2
-#Patch0:		%{name}-DESTDIR.patch
-Patch1:		%{name}-desktop.patch
-Patch2:		%{name}-home_etc.patch
-Patch3:		%{name}-locales.patch
+Patch0:		%{name}-desktop.patch
+Patch1:		%{name}-home_etc.patch
+Patch2:		%{name}-locales.patch
 URL:		http://bluefish.openoffice.nl/
 BuildRequires:	aspell-devel
 BuildRequires:	autoconf
@@ -36,6 +35,8 @@ BuildRequires:	libtool
 BuildRequires:	libungif-devel
 BuildRequires:	pcre-devel
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.197
+Requires(post,postun):	desktop-file-utils
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -54,10 +55,9 @@ Bluefish é liberado sob a licença GPL.
 
 %prep
 %setup -q
-#%patch0 -p1
-%patch1	-p1
-#%patch2 -p1
-%patch3 -p1
+%patch0 -p1
+#%patch1 -p1
+%patch2 -p1
 
 mv -f po/{no,nb}.po
 mv -f po/sr{,@Latn}.po
@@ -76,24 +76,29 @@ mv -f po/sr{,@Latn}.po
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_pixmapsdir},%{_desktopdir}}
-#install -d $RPM_BUILD_ROOT%{_datadir}/{application-registry,mime-info}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install -c inline_images/bluefish_icon1.png $RPM_BUILD_ROOT%{_pixmapsdir}/bluefish.png
+rm -rf $RPM_BUILD_ROOT%{_datadir}/{application-registry,mime-info}
 
 %find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post
+%update_desktop_database_post
+
+%postun
+%update_desktop_database_postun
+
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS README TODO
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/%{name}
-%{_datadir}/application-registry/*
-%{_datadir}/mime-info/*
+%{_datadir}/mime/packages/*.xml
 %{_desktopdir}/*
 %{_pixmapsdir}/*
