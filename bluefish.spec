@@ -8,8 +8,8 @@
 Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl):	Bluefish - Edytor HTML-a dla zaawansowanych
 Name:		bluefish
-Version:	1.0
-Release:	2
+Version:	1.0.1
+Release:	1
 License:	GPL
 Group:		X11/Applications/Editors
 # The master server is here
@@ -20,6 +20,7 @@ Source0:	http://pkedu.fbt.eitn.wau.nl/~olivier/downloads/%{name}-%{version}.tar.
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
 Patch2:		%{name}-locales.patch
+Patch3:		%{name}-po_install.patch
 URL:		http://bluefish.openoffice.nl/
 BuildRequires:	aspell-devel
 BuildRequires:	autoconf
@@ -37,6 +38,8 @@ BuildRequires:	pcre-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
 Requires(post,postun):	desktop-file-utils
+Requires(post,postun):  shared-mime-info
+Requires:	gnome-icon-theme
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -58,30 +61,35 @@ Bluefish é liberado sob a licença GPL.
 %patch0 -p1
 #%patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 mv -f po/{no,nb}.po
 mv -f po/sr{,@Latn}.po
 
 %build
-%{__gettextize}
+#%%{__gettextize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %configure \
 	--disable-update-databases \
+	--without-gnome2_4-mime \
+	--without-gnome2_4-appreg \
 	%{?with_opts:--enable-auto-optimization}
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_pixmapsdir},%{_desktopdir}}
+install -d $RPM_BUILD_ROOT{%{_pixmapsdir},%{_desktopdir}} \
+	$RPM_BUILD_ROOT%{_iconsdir}/gnome/48x48/mimetypes
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -c inline_images/bluefish_icon1.png $RPM_BUILD_ROOT%{_pixmapsdir}/bluefish.png
-rm -rf $RPM_BUILD_ROOT%{_datadir}/{application-registry,mime-info}
+rm -f $RPM_BUILD_ROOT%{_desktopdir}/bluefish-project.desktop
+mv $RPM_BUILD_ROOT%{_pixmapsdir}/gnome-application-bluefish-project.png \
+	$RPM_BUILD_ROOT%{_iconsdir}/gnome/48x48/mimetypes
 
 %find_lang %{name}
 
@@ -89,11 +97,17 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/{application-registry,mime-info}
 rm -rf $RPM_BUILD_ROOT
 
 %post
+umask 022
+update-mime-database %{_datadir}/mime ||:
 %update_desktop_database_post
 
 %postun
 %update_desktop_database_postun
-
+if [ $1 = 0 ]; then
+    umask 022
+    update-mime-database %{_datadir}/mime
+fi
+		
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS README TODO
@@ -101,4 +115,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}
 %{_datadir}/mime/packages/*.xml
 %{_desktopdir}/*
+%{_iconsdir}/gnome/48x48/mimetypes/*.png
 %{_pixmapsdir}/*
