@@ -1,0 +1,12 @@
+diff -aurN bluefish-1.0.1.orig/po/Makefile.in bluefish-1.0.1/po/Makefile.in
+--- bluefish-1.0.1.orig/po/Makefile.in	2005-04-12 04:32:33.000000000 +0200
++++ bluefish-1.0.1/po/Makefile.in	2005-06-13 19:01:28.110522912 +0200
+@@ -71,7 +71,7 @@
+ 	@for file in $(SRCS) ; do \
+ 		lang=`echo $${file} | sed -e 's/\.po$$//'`;\
+ 		echo -n "updating $${lang}.po...";\
+-		$(MSGMERGE) -q --output-file=tmp.po $${lang}.po bluefish.po && mv tmp.po $${lang}.po;\
++		$(MSGMERGE) -q --output-file=tmp.po $${lang}.po ${PACKAGE}.po && mv tmp.po $${lang}.po;\
+ 		$(MSGFMT) --statistics $${lang}.po -o $${lang}.gmo ;\
+ 	done
+ 
