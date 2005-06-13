@@ -1,33 +1,24 @@
---- bluefish-0.13/configure.ac~	Mon Jul 26 00:30:34 2004
-+++ bluefish-0.13/configure.ac	Mon Jul 26 00:34:25 2004
+diff -aurN bluefish-1.0.1.orig/configure.ac bluefish-1.0.1/configure.ac
+--- bluefish-1.0.1.orig/configure.ac	2005-05-08 22:05:16.000000000 +0200
++++ bluefish-1.0.1/configure.ac	2005-06-13 19:35:05.810785848 +0200
 @@ -30,7 +30,7 @@
  AC_DEFINE_UNQUOTED(CONFIGURE_OPTIONS, "$0 $*")
  
  # these are the languages that will be installed, so these should be finished
--ALL_LINGUAS="da de es fi fr it no pl pt pt_BR ru sr sv zh_CN"
-+ALL_LINGUAS="bg cs da de el es fi fr hu it ja nb nl pl pt pt_BR ro ru sr@Latn sv ta zh_CN"
+-ALL_LINGUAS="bg cs da de es fi fr hu it ja no pl pt pt_BR ru sr sv ta tr zh_CN zh_TW"
++ALL_LINGUAS="bg cs da de es fi fr hu it ja nb nl pl pt pt_BR ru sr@Latn sv ta tr zh_CN zh_TW"
  AC_SUBST(ALL_LINGUAS)
-   
- dnl ************************   
---- bluefish-0.13/configure~	Mon Jul 26 00:34:25 2004
-+++ bluefish-0.13/configure	Mon Jul 26 00:34:25 2004
-@@ -1378,7 +1378,7 @@
  
- 
- # these are the languages that will be installed, so these should be finished
--ALL_LINGUAS="da de es fi fr it no pl pt pt_BR ru sr sv zh_CN"
-+ALL_LINGUAS="bg cs da de el es fi fr hu it ja nb nl pl pt pt_BR ro ru sr@Latn sv ta zh_CN"
- 
- 
- 
---- bluefish-0.13/po/Makefile.in~	Mon Jul 26 00:51:30 2004
-+++ bluefish-0.13/po/Makefile.in	Mon Jul 26 00:51:30 2004
-@@ -24,7 +24,7 @@
+ dnl ************************
+diff -aurN bluefish-1.0.1.orig/po/Makefile.in bluefish-1.0.1/po/Makefile.in
+--- bluefish-1.0.1.orig/po/Makefile.in	2005-04-12 04:32:33.000000000 +0200
++++ bluefish-1.0.1/po/Makefile.in	2005-06-13 19:43:29.564203688 +0200
+@@ -25,7 +25,7 @@
  XGETTEXT = @XGETTEXT@
  MSGMERGE = @MSGMERGE@
  
--SRCS = bg.po cs.po da.po de.po el.po es.po fi.po fr.po hu.po it.po ja.po nl.po no.po pl.po pt.po pt_BR.po ro.po ru.po sr.po sv.po ta.po zh_CN.po
-+SRCS = bg.po cs.po da.po de.po el.po es.po fi.po fr.po hu.po it.po ja.po nb.po nl.po pl.po pt.po pt_BR.po ro.po ru.po sr@Latn.po sv.po ta.po zh_CN.po
+-SRCS = bg.po cs.po da.po de.po el.po es.po fi.po fr.po hu.po it.po ja.po nl.po no.po pl.po pt.po pt_BR.po ro.po ru.po sr.po sv.po ta.po tr.po zh_CN.po zh_TW.po
++SRCS = bg.po cs.po da.po de.po el.po es.po fi.po fr.po hu.po it.po ja.po nb.po nl.po pl.po pt.po pt_BR.po ro.po ru.po sr@Latn.po sv.po ta.po tr.po zh_CN.po zh_TW.po
  .SUFFIXES: .po .gmo
  OBJS = $(SRCS:.po=.gmo)
  
