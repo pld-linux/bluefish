@@ -8,13 +8,13 @@
 Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl):	Bluefish - Edytor HTML-a dla zaawansowanych
 Name:		bluefish
-Version:	1.0.2
+Version:	1.0.4
 Release:	1
 License:	GPL
 Group:		X11/Applications/Editors
 # The master server is here
 Source0:	http://pkedu.fbt.eitn.wau.nl/~olivier/downloads/%{name}-%{version}.tar.bz2
-# Source0-md5:	281d72f5c45c913671c36bc6b7b45445
+# Source0-md5:	8d5c1b7315cdc935aa024954093d2b32
 # but if you want ftp: try this one
 # Source0:	ftp://bluefish.advancecreations.com/bluefish/downloads/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-desktop.patch
