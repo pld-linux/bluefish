@@ -37,7 +37,7 @@ BuildRequires:	pcre-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
 Requires(post,postun):	desktop-file-utils
-Requires(post,postun):  shared-mime-info
+Requires(post,postun):	shared-mime-info
 Requires:	gnome-icon-theme
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -105,7 +105,7 @@ if [ $1 = 0 ]; then
     umask 022
     update-mime-database %{_datadir}/mime
 fi
-		
+
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS README TODO
