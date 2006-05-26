@@ -25,6 +25,7 @@ BuildRequires:	aspell-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
+BuildRequires:	giflib-devel
 BuildRequires:	gnome-vfs2-devel >= 2.2
 BuildRequires:	gtk+2-devel
 BuildRequires:	libbonobo-devel >= 2.2
@@ -32,7 +33,6 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng >= 1.2.5
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
-BuildRequires:	libungif-devel
 BuildRequires:	pcre-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
