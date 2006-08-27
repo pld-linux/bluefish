@@ -9,7 +9,7 @@ Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl):	Bluefish - Edytor HTML-a dla zaawansowanych
 Name:		bluefish
 Version:	1.0.4
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Editors
 # The master server is here
@@ -38,7 +38,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	shared-mime-info
-Requires:	gnome-icon-theme
+Requires:	hicolor-icon-theme
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -80,14 +80,14 @@ mv -f po/sr{,@Latn}.po
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_pixmapsdir},%{_desktopdir}} \
-	$RPM_BUILD_ROOT%{_iconsdir}/gnome/48x48/mimetypes
+	$RPM_BUILD_ROOT%{_iconsdir}/hicolor/48x48/mimetypes
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 rm -f $RPM_BUILD_ROOT%{_desktopdir}/bluefish-project.desktop
 mv $RPM_BUILD_ROOT%{_pixmapsdir}/gnome-application-bluefish-project.png \
-	$RPM_BUILD_ROOT%{_iconsdir}/gnome/48x48/mimetypes
+	$RPM_BUILD_ROOT%{_iconsdir}/hicolor/48x48/mimetypes
 
 %find_lang %{name}
 
@@ -113,5 +113,5 @@ fi
 %{_datadir}/%{name}
 %{_datadir}/mime/packages/*.xml
 %{_desktopdir}/*
-%{_iconsdir}/gnome/48x48/mimetypes/*.png
+%{_iconsdir}/hicolor/48x48/mimetypes/*.png
 %{_pixmapsdir}/*
