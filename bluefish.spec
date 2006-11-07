@@ -112,6 +112,6 @@ fi
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/%{name}
 %{_datadir}/mime/packages/*.xml
-%{_desktopdir}/*
+%{_desktopdir}/*.desktop
 %{_iconsdir}/hicolor/48x48/mimetypes/*.png
 %{_pixmapsdir}/*
