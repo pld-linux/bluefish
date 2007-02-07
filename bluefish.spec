@@ -13,7 +13,7 @@ Release:	1
 License:	GPL
 Group:		X11/Applications/Editors
 # The master server is here
-Source0:	http://www.bennewitz.com/bluefish/stable/source/bluefish-1.0.7.tar.bz2
+Source0:	http://www.bennewitz.com/bluefish/stable/source/%{name}-%{version}.tar.bz2
 # Source0-md5:	2c3b3c9c8f8e32b9473dfd879f216dea
 # but if you want ftp: try this one
 # Source0:	ftp://bluefish.advancecreations.com/bluefish/downloads/%{name}-%{version}.tar.bz2
@@ -33,7 +33,6 @@ BuildRequires:	libbonobo-devel >= 2.2
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng >= 1.2.5
 BuildRequires:	libtiff-devel
-BuildRequires:	libtool
 BuildRequires:	pcre-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
