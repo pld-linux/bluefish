@@ -8,13 +8,13 @@
 Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl):	Bluefish - Edytor HTML-a dla zaawansowanych
 Name:		bluefish
-Version:	1.0.4
-Release:	2
+Version:	1.0.7
+Release:	1
 License:	GPL
 Group:		X11/Applications/Editors
 # The master server is here
-Source0:	http://pkedu.fbt.eitn.wau.nl/~olivier/downloads/%{name}-%{version}.tar.bz2
-# Source0-md5:	8d5c1b7315cdc935aa024954093d2b32
+Source0:	http://www.bennewitz.com/bluefish/stable/source/bluefish-1.0.7.tar.bz2
+# Source0-md5:	2c3b3c9c8f8e32b9473dfd879f216dea
 # but if you want ftp: try this one
 # Source0:	ftp://bluefish.advancecreations.com/bluefish/downloads/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-desktop.patch
@@ -28,6 +28,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	giflib-devel
 BuildRequires:	gnome-vfs2-devel >= 2.2
 BuildRequires:	gtk+2-devel
+BuildRequires:	home-etc-devel
 BuildRequires:	libbonobo-devel >= 2.2
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng >= 1.2.5
@@ -35,10 +36,11 @@ BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 BuildRequires:	pcre-devel
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.197
+BuildRequires:	rpmbuild(macros) >= 1.311
 Requires(post,postun):	desktop-file-utils
+Requires(post,postun):	gtk+2
+Requires(post,postun):	hicolor-icon-theme
 Requires(post,postun):	shared-mime-info
-Requires:	hicolor-icon-theme
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -58,15 +60,13 @@ Bluefish é liberado sob a licença GPL.
 %prep
 %setup -q
 %patch0 -p1
-#%patch1 -p1
+%patch1 -p1
 %patch2 -p1
 
 mv -f po/{no,nb}.po
 mv -f po/sr{,@Latn}.po
 
 %build
-#%%{__gettextize}
-%{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %configure \
@@ -79,15 +79,14 @@ mv -f po/sr{,@Latn}.po
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_pixmapsdir},%{_desktopdir}} \
-	$RPM_BUILD_ROOT%{_iconsdir}/hicolor/48x48/mimetypes
+install -d $RPM_BUILD_ROOT%{_iconsdir}/hicolor/48x48/mimetypes
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+mv -f $RPM_BUILD_ROOT%{_pixmapsdir}/gnome-mime-application-bluefish-project.png \
+    $RPM_BUILD_ROOT%{_iconsdir}/hicolor/48x48/mimetypes/gnome-mime-application-bluefish-project.png
 rm -f $RPM_BUILD_ROOT%{_desktopdir}/bluefish-project.desktop
-mv $RPM_BUILD_ROOT%{_pixmapsdir}/gnome-application-bluefish-project.png \
-	$RPM_BUILD_ROOT%{_iconsdir}/hicolor/48x48/mimetypes
 
 %find_lang %{name}
 
@@ -95,23 +94,22 @@ mv $RPM_BUILD_ROOT%{_pixmapsdir}/gnome-application-bluefish-project.png \
 rm -rf $RPM_BUILD_ROOT
 
 %post
-umask 022
-update-mime-database %{_datadir}/mime ||:
+%update_mime_database
 %update_desktop_database_post
+%update_icon_cache hicolor
 
 %postun
 %update_desktop_database_postun
-if [ $1 = 0 ]; then
-    umask 022
-    update-mime-database %{_datadir}/mime
-fi
+%update_mime_database
+%update_icon_cache hicolor
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS README TODO
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/bluefish
 %{_datadir}/%{name}
-%{_datadir}/mime/packages/*.xml
-%{_desktopdir}/*.desktop
-%{_iconsdir}/hicolor/48x48/mimetypes/*.png
-%{_pixmapsdir}/*
+%{_datadir}/mime/packages/bluefish.xml
+%{_mandir}/man1/bluefish.1*
+%{_iconsdir}/hicolor/48x48/mimetypes/gnome-mime-application-bluefish-project.png
+%{_desktopdir}/bluefish.desktop
+%{_pixmapsdir}/bluefish-icon.png
