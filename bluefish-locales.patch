@@ -1,24 +1,24 @@
-diff -aurN bluefish-1.0.1.orig/configure.ac bluefish-1.0.1/configure.ac
---- bluefish-1.0.1.orig/configure.ac	2005-05-08 22:05:16.000000000 +0200
-+++ bluefish-1.0.1/configure.ac	2005-06-13 19:35:05.810785848 +0200
+diff -urN bluefish-1.0.7/configure.ac bluefish-1.0.7.new/configure.ac
+--- bluefish-1.0.7/configure.ac	2007-02-07 11:33:01.000000000 +0100
++++ bluefish-1.0.7.new/configure.ac	2007-02-07 11:36:56.000000000 +0100
 @@ -30,7 +30,7 @@
  AC_DEFINE_UNQUOTED(CONFIGURE_OPTIONS, "$0 $*")
  
  # these are the languages that will be installed, so these should be finished
--ALL_LINGUAS="bg cs da de es fi fr hu it ja no pl pt pt_BR ru sr sv ta tr zh_CN zh_TW"
-+ALL_LINGUAS="bg cs da de es fi fr hu it ja nb nl pl pt pt_BR ru sr@Latn sv ta tr zh_CN zh_TW"
+-ALL_LINGUAS="bg cs da de es eu fi fr hu it ja no pl pt pt_BR ru sk sr sv ta tr zh_CN zh_TW"
++ALL_LINGUAS="bg cs da de es eu fi fr hu it ja nb nl pl pt pt_BR ru sk sr@Latn sv ta tr zh_CN zh_TW"
  AC_SUBST(ALL_LINGUAS)
  
  dnl ************************
-diff -aurN bluefish-1.0.1.orig/po/Makefile.in bluefish-1.0.1/po/Makefile.in
---- bluefish-1.0.1.orig/po/Makefile.in	2005-04-12 04:32:33.000000000 +0200
-+++ bluefish-1.0.1/po/Makefile.in	2005-06-13 19:43:29.564203688 +0200
-@@ -25,7 +25,7 @@
+diff -urN bluefish-1.0.7/po/Makefile.in bluefish-1.0.7.new/po/Makefile.in
+--- bluefish-1.0.7/po/Makefile.in	2007-02-07 11:33:01.000000000 +0100
++++ bluefish-1.0.7.new/po/Makefile.in	2007-02-07 11:37:42.000000000 +0100
+@@ -26,7 +26,7 @@
  XGETTEXT = @XGETTEXT@
  MSGMERGE = @MSGMERGE@
  
--SRCS = bg.po cs.po da.po de.po el.po es.po fi.po fr.po hu.po it.po ja.po nl.po no.po pl.po pt.po pt_BR.po ro.po ru.po sr.po sv.po ta.po tr.po zh_CN.po zh_TW.po
-+SRCS = bg.po cs.po da.po de.po el.po es.po fi.po fr.po hu.po it.po ja.po nb.po nl.po pl.po pt.po pt_BR.po ro.po ru.po sr@Latn.po sv.po ta.po tr.po zh_CN.po zh_TW.po
+-SRCS = bg.po cs.po da.po de.po el.po es.po eu.po fi.po fr.po hu.po it.po ja.po nl.po no.po pl.po pt.po pt_BR.po ro.po ru.po sk.po sr.po sv.po ta.po tr.po zh_CN.po zh_TW.po
++SRCS = bg.po cs.po da.po de.po el.po es.po eu.po fi.po fr.po hu.po it.po ja.po nl.po nb.po pl.po pt.po pt_BR.po ro.po ru.po sk.po sr@Latn.po sv.po ta.po tr.po zh_CN.po zh_TW.po
  .SUFFIXES: .po .gmo
  OBJS = $(SRCS:.po=.gmo)
  
