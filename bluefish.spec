@@ -6,7 +6,7 @@
 #	obsoleted for C (like -fno-rtti) - use at own risk!
 #
 Summary:	Bluefish - HTML editor for the experienced web designer
-Summary(pl):	Bluefish - Edytor HTML-a dla zaawansowanych
+Summary(pl.UTF-8):   Bluefish - Edytor HTML-a dla zaawansowanych
 Name:		bluefish
 Version:	1.0.7
 Release:	2
@@ -46,15 +46,15 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Bluefish is a GTK+ based HTML editor designed for the experienced web
 designer.
 
-%description -l pl
+%description -l pl.UTF-8
 Bluefish jest opartym na GTK+ edytorem HTML-a, przeznaczonym dla
-do∂wiadczonych projektantÛw stron WWW.
+do≈õwiadczonych projektant√≥w stron WWW.
 
-%description -l pt_BR
-O bluefish È um editor HTML feito com GTK+ para web designers
-experientes. Atualmente ele est· em est·gio alfa, mas j· est· bastante
-us·vel. Algumas opÁıes ainda n„o est„o completamente finalizadas.
-Bluefish È liberado sob a licenÁa GPL.
+%description -l pt_BR.UTF-8
+O bluefish √© um editor HTML feito com GTK+ para web designers
+experientes. Atualmente ele est√° em est√°gio alfa, mas j√° est√° bastante
+us√°vel. Algumas op√ß√µes ainda n√£o est√£o completamente finalizadas.
+Bluefish √© liberado sob a licen√ßa GPL.
 
 %prep
 %setup -q
