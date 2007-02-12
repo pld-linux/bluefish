@@ -6,7 +6,7 @@
 #	obsoleted for C (like -fno-rtti) - use at own risk!
 #
 Summary:	Bluefish - HTML editor for the experienced web designer
-Summary(pl.UTF-8):   Bluefish - Edytor HTML-a dla zaawansowanych
+Summary(pl.UTF-8):	Bluefish - Edytor HTML-a dla zaawansowanych
 Name:		bluefish
 Version:	1.0.7
 Release:	2
