@@ -9,7 +9,7 @@ Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl.UTF-8):	Bluefish - Edytor HTML-a dla zaawansowanych
 Name:		bluefish
 Version:	1.0.7
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications/Editors
 # The master server is here
@@ -40,6 +40,8 @@ Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,postun):	shared-mime-info
+# sr@Latn vs. sr@latin
+Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -88,6 +90,8 @@ mv -f $RPM_BUILD_ROOT%{_pixmapsdir}/gnome-mime-application-bluefish-project.png 
     $RPM_BUILD_ROOT%{_iconsdir}/hicolor/48x48/mimetypes/gnome-mime-application-bluefish-project.png
 rm -f $RPM_BUILD_ROOT%{_desktopdir}/bluefish-project.desktop
 
+[ -d $RPM_BUILD_ROOT%{_datadir}/locale/sr@latin ] || \
+	mv -f $RPM_BUILD_ROOT%{_datadir}/locale/sr@{Latn,latin}
 %find_lang %{name}
 
 %clean
