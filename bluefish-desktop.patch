@@ -1,22 +1,18 @@
-diff -urN bluefish-1.0.7/data/bluefish.desktop.in bluefish-1.0.7.new/data/bluefish.desktop.in
---- bluefish-1.0.7/data/bluefish.desktop.in	2006-01-31 07:23:18.000000000 +0100
-+++ bluefish-1.0.7.new/data/bluefish.desktop.in	2007-02-07 12:13:49.000000000 +0100
-@@ -2,14 +2,16 @@
- Name=Bluefish Editor
- Name[de]=Bluefish Editor
- Name[fr]=Éditeur Bluefish
-+Name[pl]=Edytor Bluefish
- Comment=Create web pages
- Comment[de]=Webseiten erstellen
- Comment[fr]=Éditeur pour développeurs web
-+Comment[pl]=Edytor do tworzenia stron internetowych
- Exec=bluefish %F
--Icon=ICONDIR/bluefish-icon.png
-+Icon=bluefish-icon.png
- Terminal=false
- Type=Application
--Categories=GTK;GNOME;Application;Development;WebDevelopment;
-+Categories=GTK;GNOME;Development;WebDevelopment;
- Encoding=UTF-8
- StartupNotify=true
- MimeType=text/html;text/css;text/x-javascript;text/x-python;text/x-perl;application/x-php;text/x-java;text/javascript;text/x-php;application/x-cgi;application/x-javascript;application/x-perl;application/x-python;application/xhtml+xml;text/mathml;text/x-csrc;text/x-chdr;text/x-dtd;text/x-sql;text/xml;
+--- po/pl_org.po	2009-12-18 03:11:26.000000000 +0100
++++ po/pl.po	2010-04-11 19:16:02.435191793 +0200
+@@ -15,13 +15,12 @@
+ "Content-Transfer-Encoding: 8 bit\n"
+ 
+ #: ../desktop-data/bluefish.desktop.in.h:1 ../src/bluefish.c:79
+-#, fuzzy
+ msgid "Bluefish Editor"
+-msgstr "Podpowiedź Bluefish:"
++msgstr "Edytor Bluefish"
+ 
+ #: ../desktop-data/bluefish.desktop.in.h:2
+ msgid "Web Development Editor"
+-msgstr ""
++msgstr "Edytor do tworzenia stron www"
+ 
+ #: ../desktop-data/bluefish.xml.in.h:1
+ #, fuzzy

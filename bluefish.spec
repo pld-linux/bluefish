@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_with	opts	# use extra optimizations
+%bcond_with	python	# enable python integration (HIGHLY EXPERIMENTAL)
 #
 # note: optflags used with this bcond are very strong, and partially
 #	obsoleted for C (like -fno-rtti) - use at own risk!
@@ -8,18 +8,17 @@
 Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl.UTF-8):	Bluefish - Edytor HTML-a dla zaawansowanych
 Name:		bluefish
-Version:	1.0.7
-Release:	4
+Version:	2.0.0
+Release:	0.1
 License:	GPL
 Group:		X11/Applications/Editors
 # The master server is here
 Source0:	http://www.bennewitz.com/bluefish/stable/source/%{name}-%{version}.tar.bz2
-# Source0-md5:	2c3b3c9c8f8e32b9473dfd879f216dea
+# Source0-md5:	ac9b1e8ef6d5691718a0daa6c78d5618
 # but if you want ftp: try this one
 # Source0:	ftp://bluefish.advancecreations.com/bluefish/downloads/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-desktop.patch
-Patch1:		%{name}-home_etc.patch
-Patch2:		%{name}-locales.patch
+Patch1:		%{name}-locales.patch
 URL:		http://bluefish.openoffice.nl/
 BuildRequires:	aspell-devel
 BuildRequires:	autoconf
@@ -27,13 +26,14 @@ BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	giflib-devel
 BuildRequires:	gnome-vfs2-devel >= 2.2
-BuildRequires:	gtk+2-devel
-BuildRequires:	home-etc-devel
+BuildRequires:	gtk+2-devel	>= 2.14
+BuildRequires: intltool
 BuildRequires:	libbonobo-devel >= 2.2
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng >= 1.2.5
 BuildRequires:	libtiff-devel
-BuildRequires:	pcre-devel
+BuildRequires: libtool
+BuildRequires:	pcre-devel	>=	3.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
 Requires(post,postun):	desktop-file-utils
@@ -61,39 +61,36 @@ Bluefish é liberado sob a licença GPL.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch0 -p0
 %patch1 -p1
-%patch2 -p1
 
-mv -f po/{no,nb}.po
 mv -f po/sr{,@Latn}.po
+mv -f src/plugin_about/po/sr{,@Latn}.po  
+mv -f src/plugin_charmap/po/sr{,@Latn}.po  
+mv -f src/plugin_entities/po/sr{,@Latn}.po  
+mv -f src/plugin_htmlbar/po/sr{,@Latn}.po  
+mv -f src/plugin_infbrowser/po/sr{,@Latn}.po  
+mv -f src/plugin_snippets/po/sr{,@Latn}.po
 
-%build
+%{__intltoolize}
+%{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %configure \
 	--disable-update-databases \
-	--with-freedesktop_org-mime=/usr/share/mime \
-	--without-gnome2_4-mime \
-	--without-gnome2_4-appreg \
-	%{?with_opts:--enable-auto-optimization}
+	%{?with_python:--enable-python}
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_iconsdir}/hicolor/48x48/mimetypes
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-mv -f $RPM_BUILD_ROOT%{_pixmapsdir}/gnome-mime-application-bluefish-project.png \
-    $RPM_BUILD_ROOT%{_iconsdir}/hicolor/48x48/mimetypes/gnome-mime-application-bluefish-project.png
-rm -f $RPM_BUILD_ROOT%{_desktopdir}/bluefish-project.desktop
+mv %{buildroot}/%{_docdir}/bluefish/* %{buildroot}/%{_docdir}/bluefish-%{version}/
 
-[ -d $RPM_BUILD_ROOT%{_datadir}/locale/sr@latin ] || \
-	mv -f $RPM_BUILD_ROOT%{_datadir}/locale/sr@{Latn,latin}
-%find_lang %{name}
+%find_lang %{name} --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -110,11 +107,41 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS README TODO
+%doc AUTHORS README TODO 
 %attr(755,root,root) %{_bindir}/bluefish
-%{_datadir}/%{name}
+%dir %{_datadir}/%{name}
 %{_datadir}/mime/packages/bluefish.xml
+%dir %{_datadir}/xml/bluefish
+%{_datadir}/xml/bluefish/catalog.xml
+%{_datadir}/xml/bluefish/2.0/bflang2.rng
+%{_datadir}/bluefish/bflang/*.bflang2
+%{_datadir}/bluefish/bflang/*.bfinc
+%{_datadir}/bluefish/bflib/*.gz
 %{_mandir}/man1/bluefish.1*
-%{_iconsdir}/hicolor/48x48/mimetypes/gnome-mime-application-bluefish-project.png
+%{_iconsdir}/hicolor/128x128/apps/bluefish.png
+%{_iconsdir}/hicolor/128x128/mimetypes/application-x-bluefish-project.png
+%{_iconsdir}/hicolor/16x16/apps/bluefish.png
+%{_iconsdir}/hicolor/16x16/mimetypes/application-x-bluefish-project.png
+%{_iconsdir}/hicolor/192x192/apps/bluefish.png
+%{_iconsdir}/hicolor/192x192/mimetypes/application-x-bluefish-project.png
+%{_iconsdir}/hicolor/22x22/apps/bluefish.png
+%{_iconsdir}/hicolor/22x22/mimetypes/application-x-bluefish-project.png
+%{_iconsdir}/hicolor/32x32/apps/bluefish.png
+%{_iconsdir}/hicolor/32x32/mimetypes/application-x-bluefish-project.png
+%{_iconsdir}/hicolor/36x36/apps/bluefish.png
+%{_iconsdir}/hicolor/36x36/mimetypes/application-x-bluefish-project.png
+%{_iconsdir}/hicolor/48x48/apps/bluefish.png
+%{_iconsdir}/hicolor/48x48/mimetypes/application-x-bluefish-project.png
+%{_iconsdir}/hicolor/64x64/apps/bluefish.png
+%{_iconsdir}/hicolor/64x64/mimetypes/application-x-bluefish-project.png
+%{_iconsdir}/hicolor/72x72/apps/bluefish.png
+%{_iconsdir}/hicolor/72x72/mimetypes/application-x-bluefish-project.png
+%{_iconsdir}/hicolor/96x96/apps/bluefish.png
+%{_iconsdir}/hicolor/96x96/mimetypes/application-x-bluefish-project.png
+%{_iconsdir}/hicolor/scalable/apps/bluefish-icon.svg
+%{_iconsdir}/hicolor/scalable/mimetypes/bluefish-project.svg
 %{_desktopdir}/bluefish.desktop
-%{_pixmapsdir}/bluefish-icon.png
+%{_pixmapsdir}/application-x-bluefish-project.png
+%{_pixmapsdir}/bluefish.png
+%dir %{_libdir}/bluefish
+%attr(755,root,root) %{_libdir}/bluefish/*.so
