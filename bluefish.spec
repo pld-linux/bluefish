@@ -2,14 +2,11 @@
 # Conditional build:
 %bcond_with	python	# enable python integration (HIGHLY EXPERIMENTAL)
 #
-# note: optflags used with this bcond are very strong, and partially
-#	obsoleted for C (like -fno-rtti) - use at own risk!
-#
 Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl.UTF-8):	Bluefish - Edytor HTML-a dla zaawansowanych
 Name:		bluefish
 Version:	2.0.0
-Release:	0.1
+Release:	1
 License:	GPL
 Group:		X11/Applications/Editors
 # The master server is here
