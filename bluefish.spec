@@ -88,7 +88,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-mv %{buildroot}/%{_docdir}/bluefish/* %{buildroot}/%{_docdir}/bluefish-%{version}/
+mkdir -p doc/bflang/
+mv data/bflang/sample.bflang2 doc/bflang/
+rm -r %{buildroot}%{_docdir}/bluefish/
 
 %find_lang %{name} --all-name
 
@@ -107,7 +109,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS README TODO 
+%doc AUTHORS README TODO doc/
 %attr(755,root,root) %{_bindir}/bluefish
 %dir %{_datadir}/%{name}
 %{_datadir}/mime/packages/bluefish.xml
@@ -117,6 +119,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/bluefish/bflang/*.bflang2
 %{_datadir}/bluefish/bflang/*.bfinc
 %{_datadir}/bluefish/bflib/*.gz
+%{_datadir}/bluefish/bluefish_splash.png
+%{_datadir}/bluefish/encodings
 %{_mandir}/man1/bluefish.1*
 %{_iconsdir}/hicolor/128x128/apps/bluefish.png
 %{_iconsdir}/hicolor/128x128/mimetypes/application-x-bluefish-project.png
