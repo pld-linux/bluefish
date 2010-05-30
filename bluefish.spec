@@ -6,7 +6,7 @@ Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl.UTF-8):	Bluefish - Edytor HTML-a dla zaawansowanych
 Name:		bluefish
 Version:	2.0.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Editors
 # The master server is here
@@ -61,6 +61,7 @@ Bluefish é liberado sob a licença GPL.
 %patch0 -p0
 %patch1 -p1
 
+mv -f po/ko{_KR,}.po
 mv -f po/sr{,@Latn}.po
 mv -f src/plugin_about/po/sr{,@Latn}.po  
 mv -f src/plugin_charmap/po/sr{,@Latn}.po  
@@ -113,9 +114,8 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/xml/bluefish
 %{_datadir}/xml/bluefish/catalog.xml
 %{_datadir}/xml/bluefish/2.0/bflang2.rng
-%{_datadir}/bluefish/bflang/*.bflang2
-%{_datadir}/bluefish/bflang/*.bfinc
-%{_datadir}/bluefish/bflib/*.gz
+%{_datadir}/bluefish/bflang
+%{_datadir}/bluefish/bflib
 %{_datadir}/bluefish/bluefish_splash.png
 %{_datadir}/bluefish/encodings
 %{_mandir}/man1/bluefish.1*
