@@ -17,20 +17,17 @@ Source0:	http://www.bennewitz.com/bluefish/stable/source/%{name}-%{version}.tar.
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-locales.patch
 URL:		http://bluefish.openoffice.nl/
-BuildRequires:	aspell-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
-BuildRequires:	giflib-devel
-BuildRequires:	gnome-vfs2-devel >= 2.2
-BuildRequires:	gtk+2-devel	>= 2.14
-BuildRequires: intltool
-BuildRequires:	libbonobo-devel >= 2.2
-BuildRequires:	libjpeg-devel
+BuildRequires:	gtk+2-devel >= 2.14
+BuildRequires:	gucharmap-devel
+BuildRequires:	intltool
 BuildRequires:	libpng >= 1.2.5
-BuildRequires:	libtiff-devel
-BuildRequires: libtool
-BuildRequires:	pcre-devel	>=	3.0
+BuildRequires:	libtool
+BuildRequires:	libxml2-progs
+BuildRequires:	man
+BuildRequires:	pcre-devel >= 3.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
 Requires(post,postun):	desktop-file-utils
@@ -63,11 +60,11 @@ Bluefish é liberado sob a licença GPL.
 
 mv -f po/ko{_KR,}.po
 mv -f po/sr{,@Latn}.po
-mv -f src/plugin_about/po/sr{,@Latn}.po  
-mv -f src/plugin_charmap/po/sr{,@Latn}.po  
-mv -f src/plugin_entities/po/sr{,@Latn}.po  
-mv -f src/plugin_htmlbar/po/sr{,@Latn}.po  
-mv -f src/plugin_infbrowser/po/sr{,@Latn}.po  
+mv -f src/plugin_about/po/sr{,@Latn}.po
+mv -f src/plugin_charmap/po/sr{,@Latn}.po
+mv -f src/plugin_entities/po/sr{,@Latn}.po
+mv -f src/plugin_htmlbar/po/sr{,@Latn}.po
+mv -f src/plugin_infbrowser/po/sr{,@Latn}.po
 mv -f src/plugin_snippets/po/sr{,@Latn}.po
 
 %{__intltoolize}
@@ -86,9 +83,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-mkdir -p doc/bflang/
+install -d doc/bflang/
 mv data/bflang/sample.bflang2 doc/bflang/
-rm -r %{buildroot}%{_docdir}/bluefish/
+rm -r $RPM_BUILD_ROOT%{_docdir}/bluefish/
 
 %find_lang %{name} --all-name
 
