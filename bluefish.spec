@@ -6,7 +6,7 @@ Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl.UTF-8):	Bluefish - Edytor HTML-a dla zaawansowanych
 Name:		bluefish
 Version:	2.0.0
-Release:	3
+Release:	4
 License:	GPL
 Group:		X11/Applications/Editors
 # The master server is here
@@ -31,7 +31,7 @@ BuildRequires:	pcre-devel >= 3.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
 Requires(post,postun):	desktop-file-utils
-Requires(post,postun):	gtk+2
+Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,postun):	shared-mime-info
 Requires:	gnome-vfs2 >= 2.2
