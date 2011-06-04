@@ -14,8 +14,7 @@ Source0:	http://www.bennewitz.com/bluefish/stable/source/%{name}-%{version}.tar.
 # Source0-md5:	4c062fcb1f90f91a35687b877d37d6dd
 # but if you want ftp: try this one
 # Source0:	ftp://bluefish.advancecreations.com/bluefish/downloads/%{name}-%{version}.tar.bz2
-Patch0:		%{name}-desktop.patch
-Patch1:		%{name}-locales.patch
+Patch0:		%{name}-locales.patch
 URL:		http://bluefish.openoffice.nl/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1.8
@@ -56,8 +55,7 @@ Bluefish é liberado sob a licença GPL.
 
 %prep
 %setup -q
-%patch0 -p0
-%patch1 -p1
+%patch0 -p1
 
 mv -f po/ko{_KR,}.po
 mv -f po/sr{,@Latn}.po
