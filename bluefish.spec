@@ -6,7 +6,7 @@ Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl.UTF-8):	Bluefish - Edytor HTML-a dla zaawansowanych
 Name:		bluefish
 Version:	2.0.3
-Release:	1
+Release:	0.1
 License:	GPL
 Group:		X11/Applications/Editors
 # The master server is here
@@ -18,11 +18,11 @@ Patch0:		%{name}-locales.patch
 URL:		http://bluefish.openoffice.nl/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1.8
-BuildRequires:	gdk-pixbuf-devel
+BuildRequires:	enchant-devel >= 1.4
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.16
 BuildRequires:	gtk+2-devel >= 2.14
-BuildRequires:	gucharmap-devel
+BuildRequires:	gucharmap2-devel >= 2.20
 BuildRequires:	intltool
 BuildRequires:	libpng >= 1.2.5
 BuildRequires:	libtool
@@ -66,8 +66,8 @@ mv -f src/plugin_htmlbar/po/sr{,@Latn}.po
 mv -f src/plugin_infbrowser/po/sr{,@Latn}.po
 mv -f src/plugin_snippets/po/sr{,@Latn}.po
 
-%{__intltoolize}
 %{__libtoolize}
+%{__intltoolize}
 %{__aclocal}
 %{__autoconf}
 %configure \
@@ -112,6 +112,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/bluefish/bflib
 %{_datadir}/bluefish/bluefish_splash.png
 %{_datadir}/bluefish/encodings
+%{_datadir}/bluefish/snippets
 %{_mandir}/man1/bluefish.1*
 %{_iconsdir}/hicolor/128x128/apps/bluefish.png
 %{_iconsdir}/hicolor/128x128/mimetypes/application-x-bluefish-project.png
