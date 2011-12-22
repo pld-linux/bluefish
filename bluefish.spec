@@ -5,13 +5,13 @@
 Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl.UTF-8):	Bluefish - Edytor HTML-a dla zaawansowanych
 Name:		bluefish
-Version:	2.0.3
+Version:	2.2.0
 Release:	0.1
 License:	GPL
 Group:		X11/Applications/Editors
 # The master server is here
 Source0:	http://www.bennewitz.com/bluefish/stable/source/%{name}-%{version}.tar.bz2
-# Source0-md5:	4c062fcb1f90f91a35687b877d37d6dd
+# Source0-md5:	23d894e065585d35dbc74c246c15cc9d
 # but if you want ftp: try this one
 # Source0:	ftp://bluefish.advancecreations.com/bluefish/downloads/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-locales.patch
@@ -22,7 +22,7 @@ BuildRequires:	enchant-devel >= 1.4
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.16
 BuildRequires:	gtk+2-devel >= 2.14
-BuildRequires:	gucharmap2-devel >= 2.20
+BuildRequires:	gucharmap-devel >= 2.20
 BuildRequires:	intltool
 BuildRequires:	libpng >= 1.2.5
 BuildRequires:	libtool
@@ -57,7 +57,6 @@ Bluefish é liberado sob a licença GPL.
 %setup -q
 %patch0 -p1
 
-mv -f po/ko{_KR,}.po
 mv -f po/sr{,@Latn}.po
 mv -f src/plugin_about/po/sr{,@Latn}.po
 mv -f src/plugin_charmap/po/sr{,@Latn}.po
@@ -65,6 +64,10 @@ mv -f src/plugin_entities/po/sr{,@Latn}.po
 mv -f src/plugin_htmlbar/po/sr{,@Latn}.po
 mv -f src/plugin_infbrowser/po/sr{,@Latn}.po
 mv -f src/plugin_snippets/po/sr{,@Latn}.po
+
+for plugin in `ls -d src/plugin_*`; do
+	cp %{_datadir}/gettext/po/Makefile.in.in $plugin/po
+done
 
 %{__libtoolize}
 %{__intltoolize}
