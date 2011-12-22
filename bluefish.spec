@@ -1,4 +1,8 @@
 #
+# TODO: 
+#	- separate subpackages for plugins
+#	- package locales for plugins
+#
 # Conditional build:
 %bcond_with	python	# enable python integration (HIGHLY EXPERIMENTAL)
 #
@@ -7,7 +11,7 @@ Summary(pl.UTF-8):	Bluefish - Edytor HTML-a dla zaawansowanych
 Name:		bluefish
 Version:	2.2.0
 Release:	0.1
-License:	GPL
+License:	GPL v3+
 Group:		X11/Applications/Editors
 # The master server is here
 Source0:	http://www.bennewitz.com/bluefish/stable/source/%{name}-%{version}.tar.bz2
@@ -87,7 +91,8 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d doc/bflang/
 mv data/bflang/sample.bflang2 doc/bflang/
-rm -r $RPM_BUILD_ROOT%{_docdir}/bluefish/
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/bluefish/
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/bluefish/*.la
 
 %find_lang %{name} --all-name
 
@@ -116,6 +121,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/bluefish/bluefish_splash.png
 %{_datadir}/bluefish/encodings
 %{_datadir}/bluefish/snippets
+%{_datadir}/bluefish/ui
 %{_mandir}/man1/bluefish.1*
 %{_iconsdir}/hicolor/128x128/apps/bluefish.png
 %{_iconsdir}/hicolor/128x128/mimetypes/application-x-bluefish-project.png
