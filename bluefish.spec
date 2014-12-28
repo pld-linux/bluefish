@@ -16,7 +16,7 @@ URL:		http://bluefish.openoffice.nl/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1.8
 BuildRequires:	enchant-devel >= 1.4
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 2.16
 BuildRequires:	gtk+3-devel >= 3.2.2
 BuildRequires:	gucharmap-devel >= 2.20
