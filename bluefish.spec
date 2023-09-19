@@ -1,14 +1,13 @@
-#
 Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl.UTF-8):	Bluefish - Edytor HTML-a dla zaawansowanych
 Name:		bluefish
-Version:	2.2.2
+Version:	2.2.14
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications/Editors
 # The master server is here
 Source0:	http://www.bennewitz.com/bluefish/stable/source/%{name}-%{version}.tar.bz2
-# Source0-md5:	6475325565fb0a003a75f88564b7835f
+# Source0-md5:	c99b6b1ba3e3e70b032936182bb0b387
 # but if you want ftp: try this one
 # Source0:	ftp://bluefish.advancecreations.com/bluefish/downloads/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-locales.patch
@@ -24,9 +23,9 @@ BuildRequires:	intltool
 BuildRequires:	libpng >= 1.2.5
 BuildRequires:	libtool
 BuildRequires:	libxml2-progs
-BuildRequires:	man
+#BuildRequires:	man
 BuildRequires:	pkgconfig
-BuildRequires:	python-devel >= 2.4
+BuildRequires:	python3-devel
 BuildRequires:	rpmbuild(macros) >= 1.311
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	gtk-update-icon-cache
@@ -67,22 +66,47 @@ Wtyczki Bluefish.
 %setup -q
 %patch0 -p1
 
-mv -f po/sr{,@Latn}.po
-mv -f src/plugin_about/po/sr{,@Latn}.po
-mv -f src/plugin_charmap/po/sr{,@Latn}.po
-mv -f src/plugin_entities/po/sr{,@Latn}.po
-mv -f src/plugin_htmlbar/po/sr{,@Latn}.po
-mv -f src/plugin_infbrowser/po/sr{,@Latn}.po
-mv -f src/plugin_snippets/po/sr{,@Latn}.po
+%{__mv} po/sr{,@Latn}.po
+%{__mv} src/plugin_about/po/sr{,@Latn}.po
+%{__mv} src/plugin_charmap/po/sr{,@Latn}.po
+%{__mv} src/plugin_entities/po/sr{,@Latn}.po
+%{__mv} src/plugin_htmlbar/po/sr{,@Latn}.po
+%{__mv} src/plugin_infbrowser/po/sr{,@Latn}.po
+%{__mv} src/plugin_snippets/po/sr{,@Latn}.po
 
 for plugin in `ls -d src/plugin_*`; do
 	cp %{_datadir}/gettext/po/Makefile.in.in $plugin/po
 done
 
+%{__sed} -E -i -e '1s,#!\s*/usr/bin/env\s+python(\s|$),#!%{__python3}\1,' -e '1s,#!\s*/usr/bin/python(\s|$),#!%{__python3}\1,' \
+      data/css_decompressor \
+      data/cssmin.py \
+      data/jsbeautify \
+      data/jsmin.py \
+      data/lorem-ipsum-generator \
+      src/plugin_zencoding/zencoding/actions/__init__.py \
+      src/plugin_zencoding/zencoding/actions/basic.py \
+      src/plugin_zencoding/zencoding/actions/token.py \
+      src/plugin_zencoding/zencoding/filters/__init__.py \
+      src/plugin_zencoding/zencoding/filters/comment.py \
+      src/plugin_zencoding/zencoding/filters/css.py \
+      src/plugin_zencoding/zencoding/filters/escape.py \
+      src/plugin_zencoding/zencoding/filters/format-css.py \
+      src/plugin_zencoding/zencoding/filters/format.py \
+      src/plugin_zencoding/zencoding/filters/haml.py \
+      src/plugin_zencoding/zencoding/filters/html.py \
+      src/plugin_zencoding/zencoding/filters/single-line.py \
+      src/plugin_zencoding/zencoding/filters/trim.py \
+      src/plugin_zencoding/zencoding/filters/xsl.py \
+      src/plugin_zencoding/zencoding/html_matcher.py \
+      src/plugin_zencoding/zencoding/resources.py \
+      src/plugin_zencoding/zencoding/utils.py
+
+%build
 %{__libtoolize}
-%{__intltoolize}
 %{__aclocal}
 %{__autoconf}
+%{__automake}
 %configure \
 	--disable-update-databases
 
@@ -130,32 +154,22 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/bluefish/bflang
 %{_datadir}/bluefish/bflib
 %{_datadir}/bluefish/bluefish_splash.png
+%{_datadir}/bluefish/colorprofiles
 %{_datadir}/bluefish/default_accelmap
+%{_datadir}/bluefish/jsbeautifier
 %{_datadir}/bluefish/templates
 %{_datadir}/bluefish/ui
+%attr(755,root,root) %{_datadir}/bluefish/css_decompressor
+%attr(755,root,root) %{_datadir}/bluefish/cssmin.py
+%attr(755,root,root) %{_datadir}/bluefish/jsbeautify
+%attr(755,root,root) %{_datadir}/bluefish/jsmin.py
+%attr(755,root,root) %{_datadir}/bluefish/lorem-ipsum-generator
 %{_datadir}/mime/packages/bluefish.xml
+%{_metainfodir}/bluefish.appdata.xml
 %{_datadir}/xml/bluefish
 %{_mandir}/man1/bluefish.1*
-%{_iconsdir}/hicolor/128x128/apps/bluefish.png
-%{_iconsdir}/hicolor/128x128/mimetypes/application-x-bluefish-project.png
-%{_iconsdir}/hicolor/16x16/apps/bluefish.png
-%{_iconsdir}/hicolor/16x16/mimetypes/application-x-bluefish-project.png
-%{_iconsdir}/hicolor/192x192/apps/bluefish.png
-%{_iconsdir}/hicolor/192x192/mimetypes/application-x-bluefish-project.png
-%{_iconsdir}/hicolor/22x22/apps/bluefish.png
-%{_iconsdir}/hicolor/22x22/mimetypes/application-x-bluefish-project.png
-%{_iconsdir}/hicolor/32x32/apps/bluefish.png
-%{_iconsdir}/hicolor/32x32/mimetypes/application-x-bluefish-project.png
-%{_iconsdir}/hicolor/36x36/apps/bluefish.png
-%{_iconsdir}/hicolor/36x36/mimetypes/application-x-bluefish-project.png
-%{_iconsdir}/hicolor/48x48/apps/bluefish.png
-%{_iconsdir}/hicolor/48x48/mimetypes/application-x-bluefish-project.png
-%{_iconsdir}/hicolor/64x64/apps/bluefish.png
-%{_iconsdir}/hicolor/64x64/mimetypes/application-x-bluefish-project.png
-%{_iconsdir}/hicolor/72x72/apps/bluefish.png
-%{_iconsdir}/hicolor/72x72/mimetypes/application-x-bluefish-project.png
-%{_iconsdir}/hicolor/96x96/apps/bluefish.png
-%{_iconsdir}/hicolor/96x96/mimetypes/application-x-bluefish-project.png
+%{_iconsdir}/hicolor/*x*/apps/bluefish.png
+%{_iconsdir}/hicolor/*x*/mimetypes/application-x-bluefish-project.png
 %{_iconsdir}/hicolor/scalable/apps/bluefish-icon.svg
 %{_iconsdir}/hicolor/scalable/mimetypes/bluefish-project.svg
 %{_desktopdir}/bluefish.desktop
