@@ -1,13 +1,13 @@
 Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl.UTF-8):	Bluefish - Edytor HTML-a dla zaawansowanych
 Name:		bluefish
-Version:	2.2.16
+Version:	2.2.17
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications/Editors
 # The master server is here
 Source0:	https://www.bennewitz.com/bluefish/stable/source/%{name}-%{version}.tar.bz2
-# Source0-md5:	6982e68b978777b7eac16c97bd7af834
+# Source0-md5:	7b19a3691c7c5787e98174e58bd6d652
 URL:		https://bluefish.openoffice.nl/index.html
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1.8
@@ -60,6 +60,12 @@ Wtyczki Bluefish.
 
 %prep
 %setup -q
+
+# missing after gettext update
+%{__sed} -ne '/define(\[_BF_LINGUAS/ s/.*, \[\([A-Za-z_ ]\+\)\])$/\1/p' configure.ac > po/LINGUAS
+for dir in src/plugin_*/po ; do
+	cp -p po/LINGUAS $dir
+done
 
 # disable enchant 1.x dependency, fallthrough to enchant-2 check
 %{__sed} -i -e 's/\[enchant\]/[enchant-disabled]/' configure.ac
