@@ -2,7 +2,7 @@ Summary:	Bluefish - HTML editor for the experienced web designer
 Summary(pl.UTF-8):	Bluefish - Edytor HTML-a dla zaawansowanych
 Name:		bluefish
 Version:	2.2.17
-Release:	1
+Release:	2
 License:	GPL v3+
 Group:		X11/Applications/Editors
 # The master server is here
